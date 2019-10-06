@@ -1,8 +1,5 @@
 package es.ulpgc.miguel.smartkey.register;
 
-import android.support.v7.app.AppCompatActivity;
-import android.support.v4.app.FragmentActivity;
-
 public class RegisterModel implements RegisterContract.Model {
 
   public static String TAG = RegisterModel.class.getSimpleName();

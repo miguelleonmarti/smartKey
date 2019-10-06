@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,7 +27,7 @@ public class LoginActivity
 
   private LoginContract.Presenter presenter;
 
-  // password pattern
+  // password pattern todo hacer una clase para todos estos metodos y constantes
   private static final Pattern PASSWORD_PATTERN =
       Pattern.compile("^" +
                       "(?=.*[0-9])" +         // at least 1 digit
@@ -42,7 +41,7 @@ public class LoginActivity
   // declaring an instance of FirebaseAuth (to login)
   private FirebaseAuth firebaseAuth;
 
-  // declaring the login button
+  // declaring the login button and the edit text
   private Button loginButton;
   private EditText emailInput, passwordInput;
 
@@ -51,7 +50,7 @@ public class LoginActivity
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_login);
 
-    // initializing the FirebaseAuth instance
+    // getting the FirebaseAuth instance
     firebaseAuth = FirebaseAuth.getInstance();
 
     // initializing the components of the view
@@ -66,31 +65,40 @@ public class LoginActivity
         if (validateEmail() && validatePassword()) {
           String email = emailInput.getText().toString();
           String password = passwordInput.getText().toString();
-          Log.d("email", email);
-          Log.d("password", password);
-          firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-              if (task.isSuccessful()) {
-                // Sign in success, update UI with the signed-in user's information
-                Log.d(TAG, "signInWithEmail:success");
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                Toast toast = Toast.makeText(getApplicationContext(), "User logged in: " + user.getEmail(), Toast.LENGTH_LONG);
-                toast.show();
-              } else {
-                // If sign in fails, display a message to the user.
-                Log.w(TAG, "signInWithEmail:failure", task.getException());
-                Toast.makeText(LoginActivity.this, "Authentication failed.",
-                    Toast.LENGTH_SHORT).show();
-              }
-            }
-          });
+          signIn(email, password);
         }
       }
     });
 
     // do the setup
     LoginScreen.configure(this);
+  }
+
+  /**
+   * Firebase method in order to sign in with email and password todo refactorizar
+   * @param email
+   * @param password
+   * @return
+   */
+  private Task<AuthResult> signIn(String email, String password) {
+    return firebaseAuth.signInWithEmailAndPassword(email, password).
+        addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+      @Override
+      public void onComplete(@NonNull Task<AuthResult> task) {
+        if (task.isSuccessful()) {
+          // Sign in success, update UI with the signed-in user's information
+          Log.d(TAG, "signInWithEmail:success");
+          FirebaseUser user = firebaseAuth.getCurrentUser();
+          Toast toast = Toast.makeText(getApplicationContext(), "User logged in: " + user.getEmail(), Toast.LENGTH_LONG);
+          toast.show();
+        } else {
+          // If sign in fails, display a message to the user.
+          Log.w(TAG, "signInWithEmail:failure", task.getException());
+          Toast.makeText(LoginActivity.this, "Authentication failed.",
+              Toast.LENGTH_SHORT).show();
+        }
+      }
+    });
   }
 
   /**
@@ -112,6 +120,10 @@ public class LoginActivity
 
   }
 
+  /**
+   * todo hacer una clase para meter todos estos metodos
+   * @return
+   */
   private boolean validateEmail() {
     String email = emailInput.getText().toString().trim();
 
@@ -127,6 +139,10 @@ public class LoginActivity
     }
   }
 
+  /**
+   * todo hacer una clase para meter todos estos metodos
+   * @return
+   */
   private boolean validatePassword() {
     String password = passwordInput.getText().toString().trim();
 
