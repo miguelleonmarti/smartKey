@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="es.ulpgc.miguel.smartkey">
 
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- Allows to log in by accessing the internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-
         android:name=".app.AppMediator"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,14 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".register.RegisterActivity">
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.LoginActivity"></activity>
+        <activity android:name=".register.RegisterActivity" />
     </application>
 
 </manifest>

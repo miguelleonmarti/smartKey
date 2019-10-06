@@ -1,7 +1,6 @@
 package es.ulpgc.miguel.smartkey.register;
 
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,11 +12,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.regex.Pattern;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import es.ulpgc.miguel.smartkey.R;
+import es.ulpgc.miguel.smartkey.services.Checker;
 
 public class RegisterActivity
     extends AppCompatActivity implements RegisterContract.View {
@@ -26,23 +24,12 @@ public class RegisterActivity
 
   private RegisterContract.Presenter presenter;
 
-  // password pattern todo hacer una clase para todos estos metodos y constantes
-  private static final Pattern PASSWORD_PATTERN =
-      Pattern.compile("^" +
-          "(?=.*[0-9])" +         // at least 1 digit
-          "(?=.*[a-z])" +         // at least 1 lower case letter
-          "(?=.*[A-Z])" +         // at least 1 upper case letter
-          "(?=.*[@#$%^&+=])" +    // at least 1 special character
-          "(?=\\S+$)" +           // no white spaces
-          ".{8,}" +               // at least 8 characters
-          "$");
-
-  // declaring an instance of FirebaseAuth (to login)
+  // declaring an instance of FirebaseAuth (to register)
   private FirebaseAuth firebaseAuth;
 
   // declaring the register button and the edit text
   private Button registerButton;
-  private EditText nameInput, emailInput, repeatEmailInput, passwordInput;
+  private EditText emailInput, repeatEmailInput, passwordInput;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +41,6 @@ public class RegisterActivity
 
     // initializing the components of the view
     registerButton = findViewById(R.id.registerButton);
-    nameInput = findViewById(R.id.nameInput);
     emailInput = findViewById(R.id.emailInput);
     repeatEmailInput = findViewById(R.id.repeatEmailInput);
     passwordInput = findViewById(R.id.passwordInput);
@@ -63,11 +49,11 @@ public class RegisterActivity
     registerButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        if (validateEmail() && validatePassword() && emailInput.getText().toString().equals(repeatEmailInput.getText().toString()) && !nameInput.getText().toString().isEmpty()) {
-          String name = nameInput.getText().toString();
+        if (Checker.validateEmail(emailInput) && Checker.validateEmails(emailInput, repeatEmailInput)
+            && Checker.validatePassword(passwordInput)) {
           String email = emailInput.getText().toString();
           String password = passwordInput.getText().toString();
-          createAccount(name, email, password);
+          createAccount(email, password);
         }
       }
     });
@@ -78,11 +64,10 @@ public class RegisterActivity
 
   /**
    * todo crear una clase para todos estos métodos
-   * @param name
    * @param email
    * @param password
    */
-  private void createAccount(String name, String email, String password) {
+  private void createAccount(String email, String password) {
     firebaseAuth.createUserWithEmailAndPassword(email, password)
         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
           @Override
@@ -96,40 +81,6 @@ public class RegisterActivity
             }
           }
         });
-  }
-
-  private boolean validateEmail() {
-    String email = emailInput.getText().toString().trim();
-
-    if (email.isEmpty()) {
-      emailInput.setError("Field cannot be empty");
-      return false;
-    } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-      emailInput.setError("Please enter a valid email address");
-      return false;
-    } else {
-      emailInput.setError(null);
-      return true;
-    }
-  }
-
-  /**
-   * todo hacer una clase para meter todos estos metodos
-   * @return
-   */
-  private boolean validatePassword() {
-    String password = passwordInput.getText().toString().trim();
-
-    if (password.isEmpty()) {
-      passwordInput.setError("Field cannot be empty");
-      return false;
-    } else if (!PASSWORD_PATTERN.matcher(password).matches()) {
-      passwordInput.setError("Password too week");
-      return false;
-    } else {
-      passwordInput.setError(null);
-      return true;
-    }
   }
 
   @Override
@@ -147,8 +98,6 @@ public class RegisterActivity
 
   @Override
   public void displayData(RegisterViewModel viewModel) {
-    //Log.e(TAG, "displayData()");
 
-    // deal with the data
   }
 }

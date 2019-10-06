@@ -1,9 +1,7 @@
 package es.ulpgc.miguel.smartkey.login;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,10 +13,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.regex.Pattern;
-
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import es.ulpgc.miguel.smartkey.R;
+import es.ulpgc.miguel.smartkey.services.Checker;
 
 public class LoginActivity
     extends AppCompatActivity implements LoginContract.View {
@@ -26,17 +24,6 @@ public class LoginActivity
   public static String TAG = LoginActivity.class.getSimpleName();
 
   private LoginContract.Presenter presenter;
-
-  // password pattern todo hacer una clase para todos estos metodos y constantes
-  private static final Pattern PASSWORD_PATTERN =
-      Pattern.compile("^" +
-                      "(?=.*[0-9])" +         // at least 1 digit
-                      "(?=.*[a-z])" +         // at least 1 lower case letter
-                      "(?=.*[A-Z])" +         // at least 1 upper case letter
-                      "(?=.*[@#$%^&+=])" +    // at least 1 special character
-                      "(?=\\S+$)" +           // no white spaces
-                      ".{8,}" +               // at least 8 characters
-                      "$");
 
   // declaring an instance of FirebaseAuth (to login)
   private FirebaseAuth firebaseAuth;
@@ -62,7 +49,7 @@ public class LoginActivity
     loginButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        if (validateEmail() && validatePassword()) {
+        if (Checker.validateEmail(emailInput) && Checker.validatePassword(passwordInput)) {
           String email = emailInput.getText().toString();
           String password = passwordInput.getText().toString();
           signIn(email, password);
@@ -75,10 +62,10 @@ public class LoginActivity
   }
 
   /**
-   * Firebase method in order to sign in with email and password todo refactorizar
-   * @param email
-   * @param password
-   * @return
+   * Firebase method in order to sign in with email and password
+   * @param email String
+   * @param password String
+   * @return Task<AuthResult>
    */
   private Task<AuthResult> signIn(String email, String password) {
     return firebaseAuth.signInWithEmailAndPassword(email, password).
@@ -120,44 +107,6 @@ public class LoginActivity
 
   }
 
-  /**
-   * todo hacer una clase para meter todos estos metodos
-   * @return
-   */
-  private boolean validateEmail() {
-    String email = emailInput.getText().toString().trim();
-
-    if (email.isEmpty()) {
-      emailInput.setError("Field cannot be empty");
-      return false;
-    } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-      emailInput.setError("Please enter a valid email address");
-      return false;
-    } else {
-      emailInput.setError(null);
-      return true;
-    }
-  }
-
-  /**
-   * todo hacer una clase para meter todos estos metodos
-   * @return
-   */
-  private boolean validatePassword() {
-    String password = passwordInput.getText().toString().trim();
-
-    if (password.isEmpty()) {
-      passwordInput.setError("Field cannot be empty");
-      return false;
-    } else if (!PASSWORD_PATTERN.matcher(password).matches()) {
-      passwordInput.setError("Password too week");
-      return false;
-    } else {
-      passwordInput.setError(null);
-      return true;
-    }
-  }
-
   @Override
   protected void onResume() {
     super.onResume();
@@ -173,10 +122,6 @@ public class LoginActivity
 
   @Override
   public void displayData(LoginViewModel viewModel) {
-    //Log.e(TAG, "displayData()");
-
-    // deal with the data
-
 
   }
 }
