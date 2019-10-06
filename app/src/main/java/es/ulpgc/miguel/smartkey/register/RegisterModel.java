@@ -1,8 +1,4 @@
-package es.ulpgc.miguel.smartkey;
-
-import android.util.Log;
-
-import java.lang.ref.WeakReference;
+package es.ulpgc.miguel.smartkey.register;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.FragmentActivity;

@@ -1,8 +1,9 @@
-package es.ulpgc.miguel.smartkey;
+package es.ulpgc.miguel.smartkey.register;
 
 import java.lang.ref.WeakReference;
 
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
+import es.ulpgc.miguel.smartkey.app.AppMediator;
 
 public class RegisterScreen {
 

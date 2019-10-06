@@ -1,8 +1,9 @@
-package es.ulpgc.miguel.smartkey;
+package es.ulpgc.miguel.smartkey.register;
 
-import android.util.Log;
 import android.content.Intent;
 import android.content.Context;
+
+import es.ulpgc.miguel.smartkey.app.AppMediator;
 
 public class RegisterRouter implements RegisterContract.Router {
 

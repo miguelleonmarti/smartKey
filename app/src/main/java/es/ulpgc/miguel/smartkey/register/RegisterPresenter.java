@@ -1,6 +1,4 @@
-package es.ulpgc.miguel.smartkey;
-
-import android.util.Log;
+package es.ulpgc.miguel.smartkey.register;
 
 import java.lang.ref.WeakReference;
 

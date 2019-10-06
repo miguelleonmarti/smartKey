@@ -1,9 +1,9 @@
-package es.ulpgc.miguel.smartkey;
+package es.ulpgc.miguel.smartkey.register;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import es.ulpgc.miguel.smartkey.R;
 
 public class RegisterActivity
     extends AppCompatActivity implements RegisterContract.View {
@@ -39,6 +39,5 @@ public class RegisterActivity
     //Log.e(TAG, "displayData()");
 
     // deal with the data
-    ((TextView) findViewById(R.id.data)).setText(viewModel.data);
   }
 }

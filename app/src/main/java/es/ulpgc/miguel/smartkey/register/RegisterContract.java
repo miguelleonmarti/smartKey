@@ -1,4 +1,4 @@
-package es.ulpgc.miguel.smartkey;
+package es.ulpgc.miguel.smartkey.register;
 
 import java.lang.ref.WeakReference;
 
