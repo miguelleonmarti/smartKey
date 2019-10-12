@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">smartKey</string>
     <string name="login_button_label">Login</string>
-    <string name="register_button_label">Register</string>
+    <string name="register_button_label">Confirm</string>
     <string name="password_textview_label">Password</string>
     <string name="email_textview_label">Email</string>
     <string name="repeat_email_textview_label">Repeat Email</string>
     <string name="name_textview_label">Name</string>
+    <string name="register_label">Register</string>
+    <string name="forgotten_password_label">Have you forgotten your password?</string>
 </resources>

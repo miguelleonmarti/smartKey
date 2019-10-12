@@ -16,6 +16,16 @@
         android:layout_weight="1"
         app:srcCompat="@drawable/ic_logo" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/login_button_label"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,16 +82,50 @@
             android:textSize="24sp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/loginButton"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_weight="1"
-        android:background="@drawable/btn_rounded"
-        android:text="@string/login_button_label"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_primary_rounded"
+            android:text="@string/register_label"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_secondary_rounded"
+            android:text="@string/login_button_label"
+            android:textAlignment="center"
+            android:textColor="@color/colorLoginButton"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/common_google_signin_btn_text_dark_pressed"
+        android:text="Button"
+        android:textColor="@color/common_google_signin_btn_text_light_default"
+        android:textSize="14sp"
+        tools:text="@string/forgotten_password_label" />
+
 </LinearLayout>

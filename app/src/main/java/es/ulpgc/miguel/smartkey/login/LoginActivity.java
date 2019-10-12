@@ -104,7 +104,6 @@ public class LoginActivity
       Toast toast = Toast.makeText(getApplicationContext(), "User not logged in", Toast.LENGTH_LONG);
       toast.show();
     }
-
   }
 
   @Override

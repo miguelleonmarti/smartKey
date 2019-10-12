@@ -16,6 +16,17 @@
         android:layout_weight="1"
         app:srcCompat="@drawable/ic_logo" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/register_label"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -129,16 +140,36 @@
             android:textSize="24sp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/registerButton"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_weight="1"
-        android:background="@drawable/btn_rounded"
-        android:text="@string/register_button_label"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_secondary_rounded"
+            android:text="@string/login_button_label"
+            android:textAlignment="center"
+            android:textColor="@color/colorLoginButton"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_primary_rounded"
+            android:text="@string/register_button_label"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 </LinearLayout>
