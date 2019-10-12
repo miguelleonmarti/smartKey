@@ -18,6 +18,8 @@ interface RegisterContract {
     void injectRouter(Router router);
 
     void fetchData();
+
+    void startLoginScreen();
   }
 
   interface Model {
@@ -30,5 +32,7 @@ interface RegisterContract {
     void passDataToNextScreen(RegisterState state);
 
     RegisterState getDataFromPreviousScreen();
+
+    void navigateToLoginScreen();
   }
 }

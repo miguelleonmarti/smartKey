@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.Context;
 
 import es.ulpgc.miguel.smartkey.app.AppMediator;
+import es.ulpgc.miguel.smartkey.login.LoginActivity;
 
 public class RegisterRouter implements RegisterContract.Router {
 
@@ -31,5 +32,13 @@ public class RegisterRouter implements RegisterContract.Router {
   public RegisterState getDataFromPreviousScreen() {
     RegisterState state = mediator.getRegisterState();
     return state;
+  }
+
+  @Override
+  public void navigateToLoginScreen() {
+    Context context = mediator.getApplicationContext();
+    Intent intent = new Intent(context, LoginActivity.class);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    context.startActivity(intent);
   }
 }

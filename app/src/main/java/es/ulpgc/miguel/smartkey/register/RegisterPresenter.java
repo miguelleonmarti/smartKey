@@ -53,5 +53,8 @@ public class RegisterPresenter implements RegisterContract.Presenter {
 
   }
 
-
+  @Override
+  public void startLoginScreen() {
+    router.navigateToLoginScreen();
+  }
 }

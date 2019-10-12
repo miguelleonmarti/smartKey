@@ -12,6 +12,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import es.ulpgc.miguel.smartkey.R;
@@ -28,7 +30,7 @@ public class RegisterActivity
   private FirebaseAuth firebaseAuth;
 
   // declaring the register button and the edit text
-  private Button registerButton;
+  private Button registerButton, loginButton;
   private EditText emailInput, repeatEmailInput, passwordInput;
 
   @Override
@@ -36,11 +38,15 @@ public class RegisterActivity
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_register);
 
+    // hiding the action bar
+    getSupportActionBar().hide();
+
     // getting the FirebaseAuth instance
     firebaseAuth = FirebaseAuth.getInstance();
 
     // initializing the components of the view
     registerButton = findViewById(R.id.registerButton);
+    loginButton = findViewById(R.id.loginButton);
     emailInput = findViewById(R.id.emailInput);
     repeatEmailInput = findViewById(R.id.repeatEmailInput);
     passwordInput = findViewById(R.id.passwordInput);
@@ -55,6 +61,13 @@ public class RegisterActivity
           String password = passwordInput.getText().toString();
           createAccount(email, password);
         }
+      }
+    });
+
+    loginButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        presenter.startLoginScreen();
       }
     });
 

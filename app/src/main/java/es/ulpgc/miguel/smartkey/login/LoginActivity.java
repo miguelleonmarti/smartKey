@@ -13,6 +13,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import es.ulpgc.miguel.smartkey.R;
@@ -29,7 +31,7 @@ public class LoginActivity
   private FirebaseAuth firebaseAuth;
 
   // declaring the login button and the edit text
-  private Button loginButton;
+  private Button loginButton, registerButton;
   private EditText emailInput, passwordInput;
 
   @Override
@@ -37,11 +39,15 @@ public class LoginActivity
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_login);
 
+    // hiding the action bar
+    getSupportActionBar().hide();
+
     // getting the FirebaseAuth instance
     firebaseAuth = FirebaseAuth.getInstance();
 
     // initializing the components of the view
     loginButton = findViewById(R.id.loginButton);
+    registerButton = findViewById(R.id.registerButton);
     emailInput = findViewById(R.id.emailInput);
     passwordInput = findViewById(R.id.passwordInput);
 
@@ -54,6 +60,13 @@ public class LoginActivity
           String password = passwordInput.getText().toString();
           signIn(email, password);
         }
+      }
+    });
+
+    registerButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        presenter.startRegisterScreen();
       }
     });
 
