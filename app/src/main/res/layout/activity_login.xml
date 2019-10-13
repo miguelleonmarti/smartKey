@@ -123,9 +123,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
-        android:text="Button"
+        android:text="@string/forgotten_password_label"
         android:textColor="@color/common_google_signin_btn_text_light_default"
-        android:textSize="14sp"
-        tools:text="@string/forgotten_password_label" />
+        android:textSize="14sp" />
 
 </LinearLayout>
