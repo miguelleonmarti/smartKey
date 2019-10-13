@@ -1,6 +1,7 @@
 package es.ulpgc.miguel.smartkey.register;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.Objects;
 
@@ -31,7 +33,7 @@ public class RegisterActivity
 
   // declaring the register button and the edit text
   private Button registerButton, loginButton;
-  private EditText emailInput, repeatEmailInput, passwordInput;
+  private EditText emailInput, repeatEmailInput, passwordInput, nameInput;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class RegisterActivity
     // initializing the components of the view
     registerButton = findViewById(R.id.registerButton);
     loginButton = findViewById(R.id.loginButton);
+    nameInput = findViewById(R.id.nameInput);
     emailInput = findViewById(R.id.emailInput);
     repeatEmailInput = findViewById(R.id.repeatEmailInput);
     passwordInput = findViewById(R.id.passwordInput);
@@ -57,9 +60,10 @@ public class RegisterActivity
       public void onClick(View view) {
         if (Checker.validateEmail(emailInput) && Checker.validateEmails(emailInput, repeatEmailInput)
             && Checker.validatePassword(passwordInput)) {
+          String name = nameInput.getText().toString();
           String email = emailInput.getText().toString();
           String password = passwordInput.getText().toString();
-          createAccount(email, password);
+          createAccount(name, email, password);
         }
       }
     });
@@ -76,17 +80,34 @@ public class RegisterActivity
   }
 
   /**
-   * todo crear una clase para todos estos métodos
+   *  todo corregir
+   * @param name
    * @param email
    * @param password
    */
-  private void createAccount(String email, String password) {
+  private void createAccount(final String name, String email, String password) {
     firebaseAuth.createUserWithEmailAndPassword(email, password)
         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
           @Override
           public void onComplete(@NonNull Task<AuthResult> task) {
             if (task.isSuccessful()) {
               FirebaseUser user = firebaseAuth.getCurrentUser();
+
+              UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                  .setDisplayName(name).build();
+
+              if (user != null) {
+                user.updateProfile(profileUpdates)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                      @Override
+                      public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                          Log.d(TAG, "User profile updated.");
+                        }
+                      }
+                    });
+              }
+
               Toast toast = Toast.makeText(getApplicationContext(), "User created", Toast.LENGTH_LONG);
               toast.show();
             } else {

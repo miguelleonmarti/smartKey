@@ -1,13 +1,13 @@
-package es.ulpgc.miguel.smartkey.login;
+package es.ulpgc.miguel.smartkey.profile;
 
 import java.lang.ref.WeakReference;
 
-interface LoginContract {
+interface ProfileContract {
 
   interface View {
     void injectPresenter(Presenter presenter);
 
-    void displayData(LoginViewModel viewModel);
+    void displayData(ProfileViewModel viewModel);
   }
 
   interface Presenter {
@@ -18,10 +18,6 @@ interface LoginContract {
     void injectRouter(Router router);
 
     void fetchData();
-
-    void startRegisterScreen();
-
-    void startHomeScreen();
   }
 
   interface Model {
@@ -31,12 +27,8 @@ interface LoginContract {
   interface Router {
     void navigateToNextScreen();
 
-    void passDataToNextScreen(LoginState state);
+    void passDataToNextScreen(ProfileState state);
 
-    LoginState getDataFromPreviousScreen();
-
-    void navigateToRegisterScreen();
-
-    void navigateToHomeScreen();
+    ProfileState getDataFromPreviousScreen();
   }
 }

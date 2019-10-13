@@ -57,4 +57,9 @@ public class LoginPresenter implements LoginContract.Presenter {
   public void startRegisterScreen() {
     router.navigateToRegisterScreen();
   }
+
+  @Override
+  public void startHomeScreen() {
+    router.navigateToHomeScreen();
+  }
 }

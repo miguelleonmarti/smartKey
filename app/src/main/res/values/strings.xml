@@ -8,4 +8,7 @@
     <string name="name_textview_label">Name</string>
     <string name="register_label">Register</string>
     <string name="forgotten_password_label">Have you forgotten your password?</string>
+    <string name="home_title_label">Home</string>
+    <string name="profile_label">Profile</string>
+    <string name="logout_label">Logout</string>
 </resources>

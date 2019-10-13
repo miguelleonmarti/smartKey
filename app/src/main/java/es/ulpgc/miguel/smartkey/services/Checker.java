@@ -61,6 +61,6 @@ public class Checker {
   }
 
   public static boolean validateEmails(@NonNull EditText firstEmailInput, @NonNull EditText secondEmailInput) {
-    return firstEmailInput.getText().toString().equals(secondEmailInput.getText().toString());
+    return firstEmailInput.getText().toString().equals(secondEmailInput.getText().toString()); // todo tiene que salir mensaje de error, no estoy comprobando el error
   }
 }

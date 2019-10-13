@@ -63,6 +63,7 @@ public class LoginActivity
       }
     });
 
+    // listener when register button is clicked
     registerButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -91,6 +92,7 @@ public class LoginActivity
           FirebaseUser user = firebaseAuth.getCurrentUser();
           Toast toast = Toast.makeText(getApplicationContext(), "User logged in: " + user.getEmail(), Toast.LENGTH_LONG);
           toast.show();
+          presenter.startHomeScreen(); // TODO cambiar
         } else {
           // If sign in fails, display a message to the user.
           Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -113,6 +115,7 @@ public class LoginActivity
     if (currentUser != null) {
       Toast toast = Toast.makeText(getApplicationContext(), "User logged in: " + currentUser.getEmail(), Toast.LENGTH_LONG);
       toast.show();
+      //presenter.startHomeScreen(); // TODO cambiar
     } else {
       Toast toast = Toast.makeText(getApplicationContext(), "User not logged in", Toast.LENGTH_LONG);
       toast.show();
