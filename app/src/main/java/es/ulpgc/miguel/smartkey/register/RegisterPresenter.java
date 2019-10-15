@@ -2,6 +2,8 @@ package es.ulpgc.miguel.smartkey.register;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.miguel.smartkey.services.FirebaseContract;
+
 public class RegisterPresenter implements RegisterContract.Presenter {
 
   public static String TAG = RegisterPresenter.class.getSimpleName();
@@ -30,27 +32,23 @@ public class RegisterPresenter implements RegisterContract.Presenter {
     this.router = router;
   }
 
+
   @Override
-  public void fetchData() {
-    // Log.e(TAG, "fetchData()");
-
-    // set passed state
-    RegisterState state = router.getDataFromPreviousScreen();
-    if (state != null) {
-      viewModel.data = state.data;
-    }
-
-    if (viewModel.data == null) {
-      // call the model
-      String data = model.fetchData();
-
-      // set initial state
-      viewModel.data = data;
-    }
-
-    // update the view
-    view.get().displayData(viewModel);
-
+  public void createAccount(String name, String email, String password) {
+    model.createAccount(name, email, password, new FirebaseContract.RegisterCallback() {
+      @Override
+      public void onRegistered(boolean error) {
+        if (!error) {
+          viewModel.message = "User created";
+          view.get().displayData(viewModel);
+          router.navigateToLoginScreen();
+        } else {
+          // cannot be registered
+          viewModel.message = "Register failed";
+          view.get().displayData(viewModel);
+        }
+      }
+    });
   }
 
   @Override

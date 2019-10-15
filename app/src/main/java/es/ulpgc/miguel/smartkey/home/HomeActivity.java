@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import es.ulpgc.miguel.smartkey.R;
 
 public class HomeActivity
@@ -25,6 +27,8 @@ public class HomeActivity
   private Button logoutButton, profileButton;
   private TextView nameText; // todo quitar
 
+  private HomeAdapter homeAdapter;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -40,6 +44,14 @@ public class HomeActivity
     logoutButton = findViewById(R.id.logoutButton);
     profileButton = findViewById(R.id.profileButton);
     nameText = findViewById(R.id.nameText);
+
+    // home adapter
+    homeAdapter = new HomeAdapter();
+
+    // declaring the recyclerView, finding its id and changing its adapter
+    RecyclerView recyclerView = findViewById(R.id.doorList);
+    recyclerView.setAdapter(homeAdapter);
+    recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
     // listeners when logout button is clicked
     logoutButton.setOnClickListener(new View.OnClickListener() {

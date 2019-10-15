@@ -1,6 +1,11 @@
 package es.ulpgc.miguel.smartkey.login;
 
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+
 import java.lang.ref.WeakReference;
+
+import es.ulpgc.miguel.smartkey.services.FirebaseContract;
 
 interface LoginContract {
 
@@ -17,15 +22,21 @@ interface LoginContract {
 
     void injectRouter(Router router);
 
-    void fetchData();
-
     void startRegisterScreen();
 
     void startHomeScreen();
+
+    void signIn(String email, String password);
+
+    void onSuccess();
+
+    void onError();
   }
 
   interface Model {
-    String fetchData();
+
+    void signIn(String email, String password, FirebaseContract.LoginCallback callback);
+
   }
 
   interface Router {

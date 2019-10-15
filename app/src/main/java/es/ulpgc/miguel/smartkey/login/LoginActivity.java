@@ -58,7 +58,7 @@ public class LoginActivity
         if (Checker.validateEmail(emailInput) && Checker.validatePassword(passwordInput)) {
           String email = emailInput.getText().toString();
           String password = passwordInput.getText().toString();
-          signIn(email, password);
+          presenter.signIn(email, password);
         }
       }
     });
@@ -73,34 +73,6 @@ public class LoginActivity
 
     // do the setup
     LoginScreen.configure(this);
-  }
-
-  /**
-   * Firebase method in order to sign in with email and password
-   * @param email String
-   * @param password String
-   * @return Task<AuthResult>
-   */
-  private Task<AuthResult> signIn(String email, String password) {
-    return firebaseAuth.signInWithEmailAndPassword(email, password).
-        addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-      @Override
-      public void onComplete(@NonNull Task<AuthResult> task) {
-        if (task.isSuccessful()) {
-          // Sign in success, update UI with the signed-in user's information
-          Log.d(TAG, "signInWithEmail:success");
-          FirebaseUser user = firebaseAuth.getCurrentUser();
-          Toast toast = Toast.makeText(getApplicationContext(), "User logged in: " + user.getEmail(), Toast.LENGTH_LONG);
-          toast.show();
-          presenter.startHomeScreen(); // TODO cambiar
-        } else {
-          // If sign in fails, display a message to the user.
-          Log.w(TAG, "signInWithEmail:failure", task.getException());
-          Toast.makeText(LoginActivity.this, "Authentication failed.",
-              Toast.LENGTH_SHORT).show();
-        }
-      }
-    });
   }
 
   /**
@@ -126,8 +98,6 @@ public class LoginActivity
   protected void onResume() {
     super.onResume();
 
-    // do some work
-    presenter.fetchData();
   }
 
   @Override
@@ -137,6 +107,7 @@ public class LoginActivity
 
   @Override
   public void displayData(LoginViewModel viewModel) {
-
+    Toast toast = Toast.makeText(getApplicationContext(), viewModel.message, Toast.LENGTH_LONG);
+    toast.show();
   }
 }

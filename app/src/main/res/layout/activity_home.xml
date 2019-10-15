@@ -13,15 +13,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/home_title_label"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
         <Button
             android:id="@+id/logoutButton"
             android:layout_width="0dp"
@@ -32,6 +23,16 @@
             android:textAlignment="center"
             android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/home_title_label"
+            android:textAlignment="center"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <Button
@@ -59,5 +60,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
+
+    <include
+        layout="@layout/door_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></include>
 
 </LinearLayout>

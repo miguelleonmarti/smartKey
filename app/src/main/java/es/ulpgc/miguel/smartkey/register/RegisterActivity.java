@@ -63,7 +63,7 @@ public class RegisterActivity
           String name = nameInput.getText().toString();
           String email = emailInput.getText().toString();
           String password = passwordInput.getText().toString();
-          createAccount(name, email, password);
+          presenter.createAccount(name, email, password);
         }
       }
     });
@@ -79,50 +79,10 @@ public class RegisterActivity
     RegisterScreen.configure(this);
   }
 
-  /**
-   *  todo corregir
-   * @param name
-   * @param email
-   * @param password
-   */
-  private void createAccount(final String name, String email, String password) {
-    firebaseAuth.createUserWithEmailAndPassword(email, password)
-        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-          @Override
-          public void onComplete(@NonNull Task<AuthResult> task) {
-            if (task.isSuccessful()) {
-              FirebaseUser user = firebaseAuth.getCurrentUser();
-
-              UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                  .setDisplayName(name).build();
-
-              if (user != null) {
-                user.updateProfile(profileUpdates)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                      @Override
-                      public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                          Log.d(TAG, "User profile updated.");
-                        }
-                      }
-                    });
-              }
-
-              Toast toast = Toast.makeText(getApplicationContext(), "User created", Toast.LENGTH_LONG);
-              toast.show();
-            } else {
-              Toast.makeText(RegisterActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-            }
-          }
-        });
-  }
-
   @Override
   protected void onResume() {
     super.onResume();
 
-    // do some work
-    presenter.fetchData();
   }
 
   @Override
@@ -132,6 +92,6 @@ public class RegisterActivity
 
   @Override
   public void displayData(RegisterViewModel viewModel) {
-
+    Toast.makeText(RegisterActivity.this, viewModel.message, Toast.LENGTH_SHORT).show();
   }
 }

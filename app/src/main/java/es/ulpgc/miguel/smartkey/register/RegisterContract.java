@@ -2,6 +2,8 @@ package es.ulpgc.miguel.smartkey.register;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.miguel.smartkey.services.FirebaseContract;
+
 interface RegisterContract {
 
   interface View {
@@ -17,13 +19,13 @@ interface RegisterContract {
 
     void injectRouter(Router router);
 
-    void fetchData();
-
     void startLoginScreen();
+
+    void createAccount(String name, String email, String password);
   }
 
   interface Model {
-    String fetchData();
+    void createAccount(String name, String email, String password, FirebaseContract.RegisterCallback callback);
   }
 
   interface Router {

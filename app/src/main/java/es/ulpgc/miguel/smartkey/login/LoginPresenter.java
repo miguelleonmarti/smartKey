@@ -2,6 +2,8 @@ package es.ulpgc.miguel.smartkey.login;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.miguel.smartkey.services.FirebaseContract;
+
 public class LoginPresenter implements LoginContract.Presenter {
 
   public static String TAG = LoginPresenter.class.getSimpleName();
@@ -30,27 +32,32 @@ public class LoginPresenter implements LoginContract.Presenter {
     this.router = router;
   }
 
+
   @Override
-  public void fetchData() {
-    // Log.e(TAG, "fetchData()");
+  public void signIn(String email, String password) {
+    model.signIn(email, password, new FirebaseContract.LoginCallback() {
+      @Override
+      public void onLoggedIn(boolean error) {
+        if (!error) {
+          // logged in successfully
+          startHomeScreen();
+        } else {
+          // cannot be logged in
+          viewModel.message = "Authentication failed";
+          view.get().displayData(viewModel);
+        }
+      }
+    });
+  }
 
-    // set passed state
-    /*LoginState state = router.getDataFromPreviousScreen();
-    if (state != null) {
-      viewModel.data = state.data;
-    }
+  @Override
+  public void onSuccess() {
+    startHomeScreen();
+  }
 
-    if (viewModel.data == null) {
-      // call the model
-      String data = model.fetchData();
+  @Override
+  public void onError() {
 
-      // set initial state
-      viewModel.data = data;
-    }
-
-    // update the view
-    view.get().displayData(viewModel);
-*/
   }
 
   @Override
