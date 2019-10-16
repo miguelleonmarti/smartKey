@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import es.ulpgc.miguel.smartkey.app.AppMediator;
+import es.ulpgc.miguel.smartkey.login.LoginActivity;
 
 public class HomeRouter implements HomeContract.Router {
 
@@ -31,5 +32,12 @@ public class HomeRouter implements HomeContract.Router {
   public HomeState getDataFromPreviousScreen() {
     HomeState state = mediator.getHomeState();
     return state;
+  }
+
+  @Override
+  public void navigateToLoginScreen() {
+    Context context = mediator.getApplicationContext();
+    Intent intent = new Intent(context, LoginActivity.class);
+    context.startActivity(intent);
   }
 }

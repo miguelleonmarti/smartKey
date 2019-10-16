@@ -1,6 +1,9 @@
 package es.ulpgc.miguel.smartkey.home;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+
+import es.ulpgc.miguel.smartkey.services.FirebaseContract;
 
 public class HomePresenter implements HomeContract.Presenter {
 
@@ -31,27 +34,30 @@ public class HomePresenter implements HomeContract.Presenter {
   }
 
   @Override
-  public void fetchData() {
-    // Log.e(TAG, "fetchData()");
-
-    // set passed state
-    HomeState state = router.getDataFromPreviousScreen();
-    /*if (state != null) {
-      viewModel.data = state.data;
-    }
-
-    if (viewModel.data == null) {
-      // call the model
-      String data = model.fetchData();
-
-      // set initial state
-      viewModel.data = data;
-    }
-
-    // update the view
-    view.get().displayData(viewModel);*/
-
+  public void signOut() {
+    model.signOut(new FirebaseContract.LogoutCallback() {
+      @Override
+      public void onLoggedOut() {
+        startLoginScreen();
+        viewModel.message = "Logout successful";
+        view.get().displayData(viewModel);
+      }
+    });
   }
 
+  @Override
+  public void fetchDoors() {
+    model.fetchDoors(new FirebaseContract.FetchDoors() {
+      @Override
+      public void onDoorsFetch(ArrayList<Door> doorArrayList) {
+        viewModel.doorList = doorArrayList;
+        view.get().displayData(viewModel);
+      }
+    });
+  }
 
+  @Override
+  public void startLoginScreen() {
+    router.navigateToLoginScreen();
+  }
 }

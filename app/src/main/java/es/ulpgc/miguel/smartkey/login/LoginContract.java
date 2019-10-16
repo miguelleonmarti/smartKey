@@ -28,9 +28,6 @@ interface LoginContract {
 
     void signIn(String email, String password);
 
-    void onSuccess();
-
-    void onError();
   }
 
   interface Model {

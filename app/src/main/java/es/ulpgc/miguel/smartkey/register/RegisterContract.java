@@ -26,6 +26,8 @@ interface RegisterContract {
 
   interface Model {
     void createAccount(String name, String email, String password, FirebaseContract.RegisterCallback callback);
+
+    void signOut(FirebaseContract.LogoutCallback callback);
   }
 
   interface Router {

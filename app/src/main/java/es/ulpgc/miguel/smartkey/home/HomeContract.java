@@ -2,6 +2,8 @@ package es.ulpgc.miguel.smartkey.home;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.miguel.smartkey.services.FirebaseContract;
+
 interface HomeContract {
 
   interface View {
@@ -17,11 +19,17 @@ interface HomeContract {
 
     void injectRouter(Router router);
 
-    void fetchData();
+    void signOut();
+
+    void startLoginScreen();
+
+    void fetchDoors();
   }
 
   interface Model {
-    String fetchData();
+    void signOut(FirebaseContract.LogoutCallback callback);
+
+    void fetchDoors(FirebaseContract.FetchDoors callback);
   }
 
   interface Router {
@@ -30,5 +38,7 @@ interface HomeContract {
     void passDataToNextScreen(HomeState state);
 
     HomeState getDataFromPreviousScreen();
+
+    void navigateToLoginScreen();
   }
 }

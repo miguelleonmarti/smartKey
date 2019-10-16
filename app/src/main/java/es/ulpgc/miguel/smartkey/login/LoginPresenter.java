@@ -51,16 +51,6 @@ public class LoginPresenter implements LoginContract.Presenter {
   }
 
   @Override
-  public void onSuccess() {
-    startHomeScreen();
-  }
-
-  @Override
-  public void onError() {
-
-  }
-
-  @Override
   public void startRegisterScreen() {
     router.navigateToRegisterScreen();
   }

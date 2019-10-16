@@ -56,4 +56,10 @@ public class RegisterModel implements RegisterContract.Model {
           }
         });
   }
+
+  @Override
+  public void signOut(FirebaseContract.LogoutCallback callback) {
+    firebaseAuth.signOut();
+    callback.onLoggedOut();
+  }
 }

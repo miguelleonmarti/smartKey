@@ -41,7 +41,12 @@ public class RegisterPresenter implements RegisterContract.Presenter {
         if (!error) {
           viewModel.message = "User created";
           view.get().displayData(viewModel);
-          router.navigateToLoginScreen();
+          model.signOut(new FirebaseContract.LogoutCallback() {
+            @Override
+            public void onLoggedOut() {
+              router.navigateToLoginScreen();
+            }
+          });
         } else {
           // cannot be registered
           viewModel.message = "Register failed";

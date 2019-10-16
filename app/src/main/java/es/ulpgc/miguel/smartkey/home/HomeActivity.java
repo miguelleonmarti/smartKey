@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -25,7 +26,6 @@ public class HomeActivity
 
   // declaring the login button and the edit text
   private Button logoutButton, profileButton;
-  private TextView nameText; // todo quitar
 
   private HomeAdapter homeAdapter;
 
@@ -43,7 +43,6 @@ public class HomeActivity
     // initializing the components of the view
     logoutButton = findViewById(R.id.logoutButton);
     profileButton = findViewById(R.id.profileButton);
-    nameText = findViewById(R.id.nameText);
 
     // home adapter
     homeAdapter = new HomeAdapter();
@@ -57,8 +56,7 @@ public class HomeActivity
     logoutButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        // todo y quitar
-        nameText.setText(firebaseAuth.getCurrentUser().getDisplayName());
+        presenter.signOut();
       }
     });
 
@@ -79,9 +77,7 @@ public class HomeActivity
   @Override
   protected void onResume() {
     super.onResume();
-
-    // do some work
-    presenter.fetchData();
+    presenter.fetchDoors();
   }
 
   @Override
@@ -91,6 +87,9 @@ public class HomeActivity
 
   @Override
   public void displayData(HomeViewModel viewModel) {
+    Toast.makeText(getApplicationContext(), viewModel.message, Toast.LENGTH_LONG).show();
 
+    // adapter
+    homeAdapter.setItems(viewModel.doorList);
   }
 }
