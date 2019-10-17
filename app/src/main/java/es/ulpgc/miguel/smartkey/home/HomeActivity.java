@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -24,9 +25,10 @@ public class HomeActivity
   // declaring an instance of FirebaseAuth (to login)
   private FirebaseAuth firebaseAuth;
 
-  // declaring the login button and the edit text
+  // declaring the buttons
   private Button logoutButton, profileButton;
 
+  // declaring the adapter
   private HomeAdapter homeAdapter;
 
   @Override
@@ -45,7 +47,14 @@ public class HomeActivity
     profileButton = findViewById(R.id.profileButton);
 
     // home adapter
-    homeAdapter = new HomeAdapter();
+    homeAdapter = new HomeAdapter(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        // todo: realizar lo que esta aqui debajo comentado
+        Door door = (Door) view.getTag();
+        //presenter.openDoor(door);
+      }
+    });
 
     // declaring the recyclerView, finding its id and changing its adapter
     RecyclerView recyclerView = findViewById(R.id.doorList);
@@ -63,8 +72,8 @@ public class HomeActivity
     // listener when profile button is clicked
     profileButton.setOnClickListener(new View.OnClickListener() {
       @Override
-      public void onClick(View v) {
-        // TODO
+      public void onClick(View view) {
+        // TODO: pasar a la pantalla profile
       }
     });
 
@@ -87,9 +96,12 @@ public class HomeActivity
 
   @Override
   public void displayData(HomeViewModel viewModel) {
-    Toast.makeText(getApplicationContext(), viewModel.message, Toast.LENGTH_LONG).show();
+    // toast with logout message
+    if (viewModel.getMessage().equals("")) {
+      Toast.makeText(getApplicationContext(), viewModel.getMessage(), Toast.LENGTH_LONG).show();
+    }
 
-    // adapter
-    homeAdapter.setItems(viewModel.doorList);
+    // adapter sets the list items
+    homeAdapter.setItems(viewModel.getDoorList());
   }
 }

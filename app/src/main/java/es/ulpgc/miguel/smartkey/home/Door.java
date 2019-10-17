@@ -1,23 +1,26 @@
 package es.ulpgc.miguel.smartkey.home;
 
 public class Door {
-  private String id, name, latitude, longitude;
+  private int id;
+  private String name;
+  private float latitude, longitude;
+  private boolean open;
 
-  public Door() {
-  }
+  public Door() {}
 
-  public Door(String id, String name, String latitude, String longitude) {
+  public Door(int id, String name, float latitude, float longitude, boolean open) {
     this.id = id;
     this.name = name;
     this.latitude = latitude;
     this.longitude = longitude;
+    this.open = open;
   }
 
-  public String getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(int id) {
     this.id = id;
   }
 
@@ -29,19 +32,27 @@ public class Door {
     this.name = name;
   }
 
-  public String getLatitude() {
+  public float getLatitude() {
     return latitude;
   }
 
-  public void setLatitude(String latitude) {
+  public void setLatitude(float latitude) {
     this.latitude = latitude;
   }
 
-  public String getLongitude() {
+  public float getLongitude() {
     return longitude;
   }
 
-  public void setLongitude(String longitude) {
+  public void setLongitude(float longitude) {
     this.longitude = longitude;
+  }
+
+  public boolean isOpen() {
+    return open;
+  }
+
+  public void setOpen(boolean open) {
+    this.open = open;
   }
 }

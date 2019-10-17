@@ -11,4 +11,8 @@
     <string name="home_title_label">Home</string>
     <string name="profile_label">Profile</string>
     <string name="logout_label">Logout</string>
+    <string name="open_label">OPEN</string>
+    <string name="closed_label">CLOSED</string>
+    <string name="latitude_label">Latitude:</string>
+    <string name="longitude_label">Longitude:</string>
 </resources>

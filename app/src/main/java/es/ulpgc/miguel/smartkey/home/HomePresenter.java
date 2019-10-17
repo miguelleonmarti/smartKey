@@ -39,7 +39,8 @@ public class HomePresenter implements HomeContract.Presenter {
       @Override
       public void onLoggedOut() {
         startLoginScreen();
-        viewModel.message = "Logout successful";
+        viewModel.setMessage("Logout successful");
+        viewModel.setDoorList(new ArrayList<Door>()); // todo: codigo sucio?
         view.get().displayData(viewModel);
       }
     });
@@ -50,7 +51,8 @@ public class HomePresenter implements HomeContract.Presenter {
     model.fetchDoors(new FirebaseContract.FetchDoors() {
       @Override
       public void onDoorsFetch(ArrayList<Door> doorArrayList) {
-        viewModel.doorList = doorArrayList;
+        viewModel.setMessage("");
+        viewModel.setDoorList(doorArrayList);
         view.get().displayData(viewModel);
       }
     });

@@ -1,24 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/btn_secondary_rounded"
     android:orientation="horizontal"
-    android:padding="10dp">
+    android:padding="15dp">
 
-    <TextView
-        android:id="@+id/doorName"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="doorName"
-        android:textAlignment="textStart"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_weight="1.5"
+        android:orientation="vertical">
 
-    <Switch
-        android:id="@+id/switch1"
+        <TextView
+            android:id="@+id/doorName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAlignment="textStart"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/latitudeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="5dp"
+                android:text="@string/latitude_label" />
+
+            <TextView
+                android:id="@+id/doorLatitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/longitudeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="5dp"
+                android:text="@string/longitude_label" />
+
+            <TextView
+                android:id="@+id/doorLongitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/openButton"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:background="@drawable/btn_open_rounded"
+        android:drawableBottom="@drawable/ic_unlock"
+        android:paddingBottom="10dp"
+        android:text="@string/open_label" />
 
 </LinearLayout>

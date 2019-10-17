@@ -5,6 +5,22 @@ import java.util.List;
 
 public class HomeViewModel {
 
-  public String message;
-  public List<Door> doorList = new ArrayList<>();
+  private String message;
+  private List<Door> doorList = new ArrayList<>();
+
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
+  public List<Door> getDoorList() {
+    return doorList;
+  }
+
+  public void setDoorList(List<Door> doorList) {
+    this.doorList = doorList;
+  }
 }

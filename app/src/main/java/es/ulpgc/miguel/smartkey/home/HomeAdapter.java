@@ -3,7 +3,9 @@ package es.ulpgc.miguel.smartkey.home;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +16,11 @@ import es.ulpgc.miguel.smartkey.R;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
   private List<Door> doorList;
+  private View.OnClickListener clickListener;
 
-  public HomeAdapter() {
+  public HomeAdapter(View.OnClickListener clickListener) {
     this.doorList = new ArrayList<>();
+    this.clickListener = clickListener;
   }
 
   public void addItem(Door door) {
@@ -46,6 +50,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     holder.itemView.setTag(doorList.get(position));
 
     holder.doorNameView.setText(doorList.get(position).getName());
+    holder.doorLatitudeView.setText(String.valueOf(doorList.get(position).getLatitude()));
+    holder.doorLongitudeView.setText(String.valueOf(doorList.get(position).getLongitude()));
+
   }
 
   @Override
@@ -55,11 +62,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
   class ViewHolder extends RecyclerView.ViewHolder {
 
-    final TextView doorNameView;
+    final TextView doorNameView, doorLatitudeView, doorLongitudeView;
+    final Button openButtonView;
 
     public ViewHolder(View view) {
       super(view);
       doorNameView = view.findViewById(R.id.doorName);
+      doorLatitudeView = view.findViewById(R.id.doorLatitude);
+      doorLongitudeView = view.findViewById(R.id.doorLongitude);
+      openButtonView = view.findViewById(R.id.openButton);
     }
   }
 }
