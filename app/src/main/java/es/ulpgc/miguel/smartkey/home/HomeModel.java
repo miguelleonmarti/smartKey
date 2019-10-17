@@ -10,6 +10,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import es.ulpgc.miguel.smartkey.models.Door;
 import es.ulpgc.miguel.smartkey.services.FirebaseContract;
 
 public class HomeModel implements HomeContract.Model {
@@ -50,5 +51,11 @@ public class HomeModel implements HomeContract.Model {
 
       }
     });
+  }
+
+  @Override
+  public void openDoor(int idDoor, FirebaseContract.OpenDoor callback) {
+    databaseReference.child("doors").child(String.valueOf(idDoor)).child("open").setValue(true);
+    callback.onDoorOpen(false);
   }
 }

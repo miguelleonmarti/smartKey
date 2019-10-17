@@ -2,7 +2,7 @@ package es.ulpgc.miguel.smartkey.services;
 
 import java.util.ArrayList;
 
-import es.ulpgc.miguel.smartkey.home.Door;
+import es.ulpgc.miguel.smartkey.models.Door;
 
 public interface FirebaseContract {
 
@@ -20,5 +20,9 @@ public interface FirebaseContract {
 
   interface FetchDoors {
     void onDoorsFetch(ArrayList<Door> doorArrayList);
+  }
+
+  interface OpenDoor {
+    void onDoorOpen(boolean error);
   }
 }

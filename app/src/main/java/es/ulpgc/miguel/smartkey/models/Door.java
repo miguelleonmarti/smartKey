@@ -1,4 +1,4 @@
-package es.ulpgc.miguel.smartkey.home;
+package es.ulpgc.miguel.smartkey.models;
 
 public class Door {
   private int id;

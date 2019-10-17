@@ -35,6 +35,9 @@ public class RegisterActivity
   private Button registerButton, loginButton;
   private EditText emailInput, repeatEmailInput, passwordInput, nameInput;
 
+  // declaring inputs checker
+  private Checker checker;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -54,12 +57,15 @@ public class RegisterActivity
     repeatEmailInput = findViewById(R.id.repeatEmailInput);
     passwordInput = findViewById(R.id.passwordInput);
 
+    // initializing the checker
+    checker = new Checker();
+
     // listener when register button is clicked
     registerButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        if (Checker.validateEmail(emailInput) && Checker.validateEmails(emailInput, repeatEmailInput)
-            && Checker.validatePassword(passwordInput)) {
+        if (checker.validateEmail(emailInput) && checker.validateEmails(emailInput, repeatEmailInput)
+            && checker.validatePassword(passwordInput)) {
           String name = nameInput.getText().toString();
           String email = emailInput.getText().toString();
           String password = passwordInput.getText().toString();

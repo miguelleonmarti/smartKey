@@ -24,7 +24,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:textAlignment="textStart"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -70,11 +70,13 @@
     <Button
         android:id="@+id/openButton"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:background="@drawable/btn_open_rounded"
         android:drawableBottom="@drawable/ic_unlock"
-        android:paddingBottom="10dp"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:padding="10dp"
         android:text="@string/open_label" />
 
 </LinearLayout>

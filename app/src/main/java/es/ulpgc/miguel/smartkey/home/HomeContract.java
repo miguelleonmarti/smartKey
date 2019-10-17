@@ -24,12 +24,16 @@ interface HomeContract {
     void startLoginScreen();
 
     void fetchDoors();
+
+    void openDoor(int doorId);
   }
 
   interface Model {
     void signOut(FirebaseContract.LogoutCallback callback);
 
     void fetchDoors(FirebaseContract.FetchDoors callback);
+
+    void openDoor(int idDoor, FirebaseContract.OpenDoor callback);
   }
 
   interface Router {
@@ -41,4 +45,5 @@ interface HomeContract {
 
     void navigateToLoginScreen();
   }
+
 }

@@ -5,22 +5,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
 import es.ulpgc.miguel.smartkey.R;
+import es.ulpgc.miguel.smartkey.models.Door;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
   private List<Door> doorList;
-  private View.OnClickListener clickListener;
+  private RecyclerViewOnClick listener;
 
-  public HomeAdapter(View.OnClickListener clickListener) {
+  public HomeAdapter(RecyclerViewOnClick listener) {
     this.doorList = new ArrayList<>();
-    this.clickListener = clickListener;
+    this.listener = listener;
   }
 
   public void addItem(Door door) {
@@ -46,13 +46,28 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
   }
 
   @Override
-  public void onBindViewHolder(ViewHolder holder, int position) {
+  public void onBindViewHolder(ViewHolder holder, final int position) {
     holder.itemView.setTag(doorList.get(position));
 
     holder.doorNameView.setText(doorList.get(position).getName());
     holder.doorLatitudeView.setText(String.valueOf(doorList.get(position).getLatitude()));
     holder.doorLongitudeView.setText(String.valueOf(doorList.get(position).getLongitude()));
 
+    if (doorList.get(position).isOpen()) {
+      holder.openButtonView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.ic_unlock);
+      holder.openButtonView.setBackgroundResource(R.drawable.btn_open_rounded);
+    } else {
+      holder.openButtonView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.ic_lock);
+      holder.openButtonView.setBackgroundResource(R.drawable.btn_closed_rounded);
+    }
+
+    holder.openButtonView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        int doorId = doorList.get(position).getId();
+        listener.onClick(doorId);
+      }
+    });
   }
 
   @Override
@@ -73,4 +88,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
       openButtonView = view.findViewById(R.id.openButton);
     }
   }
+
+
 }

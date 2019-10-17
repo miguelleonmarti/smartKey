@@ -3,6 +3,7 @@ package es.ulpgc.miguel.smartkey.home;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
+import es.ulpgc.miguel.smartkey.models.Door;
 import es.ulpgc.miguel.smartkey.services.FirebaseContract;
 
 public class HomePresenter implements HomeContract.Presenter {
@@ -54,6 +55,20 @@ public class HomePresenter implements HomeContract.Presenter {
         viewModel.setMessage("");
         viewModel.setDoorList(doorArrayList);
         view.get().displayData(viewModel);
+      }
+    });
+  }
+
+  @Override
+  public void openDoor(int doorId) {
+    model.openDoor(doorId, new FirebaseContract.OpenDoor() {
+      @Override
+      public void onDoorOpen(boolean error) {
+        if (!error) {
+          // no hay error
+        } else {
+          // hay error
+        }
       }
     });
   }

@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
 
-public class Checker {
+public class Checker implements CheckerContract {
 
   private static final String AT_LEAST_ONE_DIGIT = "(?=.*[0-9])";
   private static final String AT_LEAST_ONE_LOWER_CASE_LETTER = "(?=.*[a-z])";
@@ -26,12 +26,8 @@ public class Checker {
           AT_LEAST_EIGHT_CHARACTERS +
           "$");
 
-  /**
-   * checks whether the email follows a pattern or not
-   * @param emailInput where the user writes down its email
-   * @return true if there are no errors
-   */
-  public static boolean validateEmail(@NonNull EditText emailInput) {
+
+  public boolean validateEmail(@NonNull EditText emailInput) {
     String email = emailInput.getText().toString().trim();
     if (email.isEmpty()) {
       emailInput.setError("Field cannot be empty");
@@ -45,7 +41,7 @@ public class Checker {
     }
   }
 
-  public static boolean validatePassword(@NonNull EditText passwordInput) {
+  public boolean validatePassword(@NonNull EditText passwordInput) {
     String password = passwordInput.getText().toString().trim();
 
     if (password.isEmpty()) {
@@ -60,7 +56,11 @@ public class Checker {
     }
   }
 
-  public static boolean validateEmails(@NonNull EditText firstEmailInput, @NonNull EditText secondEmailInput) {
-    return firstEmailInput.getText().toString().equals(secondEmailInput.getText().toString()); // todo tiene que salir mensaje de error, no estoy comprobando el error
+  public  boolean validateEmails(@NonNull EditText firstEmailInput, @NonNull EditText secondEmailInput) {
+    boolean isEqual = firstEmailInput.getText().toString().equals(secondEmailInput.getText().toString());
+    if (!isEqual) {
+      secondEmailInput.setError("Emails do not match");
+    }
+    return isEqual;
   }
 }

@@ -3,6 +3,8 @@ package es.ulpgc.miguel.smartkey.home;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.ulpgc.miguel.smartkey.models.Door;
+
 public class HomeViewModel {
 
   private String message;

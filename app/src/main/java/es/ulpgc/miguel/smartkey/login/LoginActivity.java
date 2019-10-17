@@ -34,6 +34,9 @@ public class LoginActivity
   private Button loginButton, registerButton;
   private EditText emailInput, passwordInput;
 
+  // declaring inputs checker
+  private Checker checker;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -51,11 +54,14 @@ public class LoginActivity
     emailInput = findViewById(R.id.emailInput);
     passwordInput = findViewById(R.id.passwordInput);
 
+    // initializing the checker
+    checker = new Checker();
+
     // listener when login button is clicked
     loginButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        if (Checker.validateEmail(emailInput) && Checker.validatePassword(passwordInput)) {
+        if (checker.validateEmail(emailInput) && checker.validatePassword(passwordInput)) {
           String email = emailInput.getText().toString();
           String password = passwordInput.getText().toString();
           presenter.signIn(email, password);
@@ -75,25 +81,6 @@ public class LoginActivity
     LoginScreen.configure(this);
   }
 
-  /**
-   * //todo este método se puede quitar cuando se pase a otra pantalla
-   */
-  @Override
-  protected void onStart() {
-    super.onStart();
-
-    // check if user is signed in (not-null) and update UI accordingly
-    FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-    if (currentUser != null) {
-      Toast toast = Toast.makeText(getApplicationContext(), "User logged in: " + currentUser.getEmail(), Toast.LENGTH_LONG);
-      toast.show();
-      //presenter.startHomeScreen(); // TODO cambiar
-    } else {
-      Toast toast = Toast.makeText(getApplicationContext(), "User not logged in", Toast.LENGTH_LONG);
-      toast.show();
-    }
-  }
-
   @Override
   protected void onResume() {
     super.onResume();
@@ -107,7 +94,6 @@ public class LoginActivity
 
   @Override
   public void displayData(LoginViewModel viewModel) {
-    Toast toast = Toast.makeText(getApplicationContext(), viewModel.message, Toast.LENGTH_LONG);
-    toast.show();
+    Toast.makeText(getApplicationContext(), viewModel.message, Toast.LENGTH_LONG).show();
   }
 }

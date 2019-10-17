@@ -47,12 +47,10 @@ public class HomeActivity
     profileButton = findViewById(R.id.profileButton);
 
     // home adapter
-    homeAdapter = new HomeAdapter(new View.OnClickListener() {
+    homeAdapter = new HomeAdapter(new RecyclerViewOnClick() {
       @Override
-      public void onClick(View view) {
-        // todo: realizar lo que esta aqui debajo comentado
-        Door door = (Door) view.getTag();
-        //presenter.openDoor(door);
+      public void onClick(int doorId) {
+        presenter.openDoor(doorId);
       }
     });
 
@@ -97,7 +95,7 @@ public class HomeActivity
   @Override
   public void displayData(HomeViewModel viewModel) {
     // toast with logout message
-    if (viewModel.getMessage().equals("")) {
+    if (!viewModel.getMessage().equals("")) {
       Toast.makeText(getApplicationContext(), viewModel.getMessage(), Toast.LENGTH_LONG).show();
     }
 
