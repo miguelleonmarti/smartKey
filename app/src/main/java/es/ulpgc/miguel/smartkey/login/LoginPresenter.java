@@ -43,7 +43,7 @@ public class LoginPresenter implements LoginContract.Presenter {
           startHomeScreen();
         } else {
           // cannot be logged in
-          viewModel.message = "Authentication failed";
+          viewModel.setMessage("Authentication failed");
           view.get().displayData(viewModel);
         }
       }

@@ -94,6 +94,6 @@ public class LoginActivity
 
   @Override
   public void displayData(LoginViewModel viewModel) {
-    Toast.makeText(getApplicationContext(), viewModel.message, Toast.LENGTH_LONG).show();
+    Toast.makeText(getApplicationContext(), viewModel.getMessage(), Toast.LENGTH_LONG).show();
   }
 }
