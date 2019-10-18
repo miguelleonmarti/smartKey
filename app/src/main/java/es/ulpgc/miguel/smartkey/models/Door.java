@@ -1,6 +1,8 @@
 package es.ulpgc.miguel.smartkey.models;
 
-public class Door {
+import java.io.Serializable;
+
+public class Door implements Serializable {
   private int id;
   private String name;
   private float latitude, longitude;

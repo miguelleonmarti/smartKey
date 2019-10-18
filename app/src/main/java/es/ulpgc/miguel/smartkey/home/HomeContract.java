@@ -1,7 +1,10 @@
 package es.ulpgc.miguel.smartkey.home;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
+import es.ulpgc.miguel.smartkey.models.Door;
 import es.ulpgc.miguel.smartkey.services.FirebaseContract;
 
 interface HomeContract {
@@ -26,6 +29,8 @@ interface HomeContract {
     void fetchDoors();
 
     void openDoor(int doorId);
+
+    void startMapsScreen();
   }
 
   interface Model {
@@ -44,6 +49,8 @@ interface HomeContract {
     HomeState getDataFromPreviousScreen();
 
     void navigateToLoginScreen();
+
+    void navigateToMapsScreen(ArrayList<Door> doorList);
   }
 
 }

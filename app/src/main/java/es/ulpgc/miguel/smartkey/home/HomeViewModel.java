@@ -8,7 +8,7 @@ import es.ulpgc.miguel.smartkey.models.Door;
 public class HomeViewModel {
 
   private String message;
-  private List<Door> doorList = new ArrayList<>();
+  private ArrayList<Door> doorList = new ArrayList<>();
 
   public String getMessage() {
     return message;
@@ -18,11 +18,11 @@ public class HomeViewModel {
     this.message = message;
   }
 
-  public List<Door> getDoorList() {
+  public ArrayList<Door> getDoorList() {
     return doorList;
   }
 
-  public void setDoorList(List<Door> doorList) {
+  public void setDoorList(ArrayList<Door> doorList) {
     this.doorList = doorList;
   }
 }

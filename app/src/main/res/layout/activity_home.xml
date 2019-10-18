@@ -25,15 +25,12 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView3"
+        <ImageView
+            android:id="@+id/logo"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="@string/home_title_label"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            app:srcCompat="@drawable/ic_logo" />
 
         <Button
             android:id="@+id/profileButton"

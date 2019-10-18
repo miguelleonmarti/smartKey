@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -28,6 +29,8 @@ public class HomeActivity
   // declaring the buttons
   private Button logoutButton, profileButton;
 
+  private ImageView logo; // todo: prueba para acceder al mapa
+
   // declaring the adapter
   private HomeAdapter homeAdapter;
 
@@ -45,6 +48,7 @@ public class HomeActivity
     // initializing the components of the view
     logoutButton = findViewById(R.id.logoutButton);
     profileButton = findViewById(R.id.profileButton);
+    logo = findViewById(R.id.logo); // todo prueba para acceder al mapa
 
     // home adapter
     homeAdapter = new HomeAdapter(new RecyclerViewOnClick() {
@@ -72,6 +76,14 @@ public class HomeActivity
       @Override
       public void onClick(View view) {
         // TODO: pasar a la pantalla profile
+      }
+    });
+
+    // todo prueba para acceder al mapa
+    logo.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        presenter.startMapsScreen(); // todo prueba para acceder al mapa
       }
     });
 

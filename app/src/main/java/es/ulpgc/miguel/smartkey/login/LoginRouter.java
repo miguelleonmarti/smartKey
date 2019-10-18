@@ -3,9 +3,13 @@ package es.ulpgc.miguel.smartkey.login;
 import android.content.Intent;
 import android.content.Context;
 
+import java.util.ArrayList;
+
+import es.ulpgc.miguel.smartkey.MapsActivity;
 import es.ulpgc.miguel.smartkey.app.AppMediator;
 import es.ulpgc.miguel.smartkey.home.HomeActivity;
 import es.ulpgc.miguel.smartkey.home.HomeScreen;
+import es.ulpgc.miguel.smartkey.models.Door;
 import es.ulpgc.miguel.smartkey.register.RegisterActivity;
 
 public class LoginRouter implements LoginContract.Router {

@@ -1,8 +1,5 @@
 package es.ulpgc.miguel.smartkey.login;
 
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-
 import java.lang.ref.WeakReference;
 
 import es.ulpgc.miguel.smartkey.services.FirebaseContract;
@@ -27,7 +24,6 @@ interface LoginContract {
     void startHomeScreen();
 
     void signIn(String email, String password);
-
   }
 
   interface Model {
@@ -46,5 +42,6 @@ interface LoginContract {
     void navigateToRegisterScreen();
 
     void navigateToHomeScreen();
+
   }
 }

@@ -65,7 +65,7 @@ public class HomePresenter implements HomeContract.Presenter {
       @Override
       public void onDoorOpen(boolean error) {
         if (!error) {
-          // no hay error
+          // no hay error todo que hago aqui?
         } else {
           // hay error
         }
@@ -76,5 +76,10 @@ public class HomePresenter implements HomeContract.Presenter {
   @Override
   public void startLoginScreen() {
     router.navigateToLoginScreen();
+  }
+
+  @Override
+  public void startMapsScreen() {
+    router.navigateToMapsScreen(viewModel.getDoorList());
   }
 }

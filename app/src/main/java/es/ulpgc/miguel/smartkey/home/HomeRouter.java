@@ -2,9 +2,16 @@ package es.ulpgc.miguel.smartkey.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import es.ulpgc.miguel.smartkey.MapsActivity;
 import es.ulpgc.miguel.smartkey.app.AppMediator;
 import es.ulpgc.miguel.smartkey.login.LoginActivity;
+import es.ulpgc.miguel.smartkey.models.Door;
 
 public class HomeRouter implements HomeContract.Router {
 
@@ -38,6 +45,19 @@ public class HomeRouter implements HomeContract.Router {
   public void navigateToLoginScreen() {
     Context context = mediator.getApplicationContext();
     Intent intent = new Intent(context, LoginActivity.class);
+    context.startActivity(intent);
+  }
+
+  @Override
+  public void navigateToMapsScreen(ArrayList<Door> doorList) { // todo importacion ?
+    Context context = mediator.getApplicationContext();
+
+    Bundle bundle = new Bundle();
+    bundle.putSerializable("doorList", doorList);
+
+    Intent intent = new Intent(context, MapsActivity.class);
+    intent.putExtras(bundle);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     context.startActivity(intent);
   }
 }
