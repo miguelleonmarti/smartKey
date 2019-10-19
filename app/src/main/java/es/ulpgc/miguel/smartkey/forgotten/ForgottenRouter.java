@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.Context;
 
 import es.ulpgc.miguel.smartkey.app.AppMediator;
+import es.ulpgc.miguel.smartkey.login.LoginActivity;
 
 public class ForgottenRouter implements ForgottenContract.Router {
 
@@ -19,6 +20,13 @@ public class ForgottenRouter implements ForgottenContract.Router {
   public void navigateToNextScreen() {
     Context context = mediator.getApplicationContext();
     Intent intent = new Intent(context, ForgottenActivity.class);
+    context.startActivity(intent);
+  }
+
+  @Override
+  public void navigateToLoginScreen() {
+    Context context = mediator.getApplicationContext();
+    Intent intent = new Intent(context, LoginActivity.class);
     context.startActivity(intent);
   }
 

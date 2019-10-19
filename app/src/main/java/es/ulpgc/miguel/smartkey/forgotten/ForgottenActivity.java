@@ -56,9 +56,10 @@ public class ForgottenActivity
   }
 
   @Override
-  protected void onResume() {
-    super.onResume();
+  public void onBackPressed() {
+    super.onBackPressed();
 
+    presenter.startLoginScreen();
   }
 
   @Override

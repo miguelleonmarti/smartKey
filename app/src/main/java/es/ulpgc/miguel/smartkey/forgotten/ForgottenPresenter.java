@@ -48,4 +48,9 @@ public class ForgottenPresenter implements ForgottenContract.Presenter {
       }
     });
   }
+
+  @Override
+  public void startLoginScreen() {
+    router.navigateToLoginScreen();
+  }
 }

@@ -21,6 +21,7 @@ interface ForgottenContract {
 
     void sendRecoveryEmail(String email);
 
+    void startLoginScreen();
   }
 
   interface Model {
@@ -35,5 +36,7 @@ interface ForgottenContract {
     void passDataToNextScreen(ForgottenState state);
 
     ForgottenState getDataFromPreviousScreen();
+
+    void navigateToLoginScreen();
   }
 }
