@@ -24,6 +24,8 @@ interface LoginContract {
     void startHomeScreen();
 
     void signIn(String email, String password);
+
+    void startForgottenScreen();
   }
 
   interface Model {
@@ -43,5 +45,6 @@ interface LoginContract {
 
     void navigateToHomeScreen();
 
+    void navigateToForgottenScreen();
   }
 }

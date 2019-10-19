@@ -28,11 +28,8 @@ public class LoginActivity
 
   private LoginContract.Presenter presenter;
 
-  // declaring an instance of FirebaseAuth (to login)
-  private FirebaseAuth firebaseAuth;
-
-  // declaring the login button and the edit text
-  private Button loginButton, registerButton;
+  // declaring the buttons and the inputs
+  private Button loginButton, registerButton, forgottenButton;
   private EditText emailInput, passwordInput;
 
   // declaring inputs checker
@@ -46,12 +43,10 @@ public class LoginActivity
     // hiding the action bar
     getSupportActionBar().hide();
 
-    // getting the FirebaseAuth instance
-    firebaseAuth = FirebaseAuth.getInstance();
-
     // initializing the components of the view
     loginButton = findViewById(R.id.loginButton);
     registerButton = findViewById(R.id.registerButton);
+    forgottenButton = findViewById(R.id.forgottenButton);
     emailInput = findViewById(R.id.emailInput);
     passwordInput = findViewById(R.id.passwordInput);
 
@@ -75,6 +70,14 @@ public class LoginActivity
       @Override
       public void onClick(View view) {
         presenter.startRegisterScreen();
+      }
+    });
+
+    // listener when forgotten password button is clicked
+    forgottenButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        presenter.startForgottenScreen();
       }
     });
 

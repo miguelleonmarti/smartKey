@@ -25,4 +25,8 @@ public interface FirebaseContract {
   interface OpenDoor {
     void onDoorOpen(boolean error);
   }
+
+  interface SendRecoveryEmail {
+    void onEmailSent(boolean error);
+  }
 }

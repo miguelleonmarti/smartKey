@@ -16,4 +16,7 @@
     <string name="latitude_label">Latitude:</string>
     <string name="longitude_label">Longitude:</string>
     <string name="title_activity_maps">Map</string>
+    <string name="reset_password_label">Reset your password</string>
+    <string name="cancelLabel">Cancel</string>
+    <string name="send_label">Send</string>
 </resources>

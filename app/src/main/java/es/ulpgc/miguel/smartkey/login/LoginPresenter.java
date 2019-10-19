@@ -56,6 +56,11 @@ public class LoginPresenter implements LoginContract.Presenter {
   }
 
   @Override
+  public void startForgottenScreen() {
+    router.navigateToForgottenScreen();
+  }
+
+  @Override
   public void startHomeScreen() {
     router.navigateToHomeScreen();
   }

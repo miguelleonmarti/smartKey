@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
-import es.ulpgc.miguel.smartkey.MapsActivity;
+import es.ulpgc.miguel.smartkey.map.MapsActivity;
 import es.ulpgc.miguel.smartkey.app.AppMediator;
 import es.ulpgc.miguel.smartkey.login.LoginActivity;
 import es.ulpgc.miguel.smartkey.models.Door;
