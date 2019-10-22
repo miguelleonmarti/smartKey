@@ -40,7 +40,12 @@ public class HomeModel implements HomeContract.Model {
         ArrayList<Door> doorList = new ArrayList<>();
         for (DataSnapshot door: doors) {
           Door item = door.getValue(Door.class);
-          doorList.add(item);
+          // allowed users filter
+          // if the current user's uid is on the list of users with permission
+          // of the door, it will add this door to the local list (home activity)
+          if (item.getUsers().contains(firebaseAuth.getCurrentUser().getUid())) {
+            doorList.add(item);
+          }
         }
 
         callback.onDoorsFetch(doorList);

@@ -1,21 +1,24 @@
 package es.ulpgc.miguel.smartkey.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Door implements Serializable {
   private int id;
   private String name;
   private float latitude, longitude;
   private boolean open;
+  private ArrayList<String> users;
 
   public Door() {}
 
-  public Door(int id, String name, float latitude, float longitude, boolean open) {
+  public Door(int id, String name, float latitude, float longitude, boolean open, ArrayList<String> users) {
     this.id = id;
     this.name = name;
     this.latitude = latitude;
     this.longitude = longitude;
     this.open = open;
+    this.users = users;
   }
 
   public int getId() {
@@ -56,5 +59,13 @@ public class Door implements Serializable {
 
   public void setOpen(boolean open) {
     this.open = open;
+  }
+
+  public ArrayList<String> getUsers() {
+    return users;
+  }
+
+  public void setUsers(ArrayList<String> users) {
+    this.users = users;
   }
 }

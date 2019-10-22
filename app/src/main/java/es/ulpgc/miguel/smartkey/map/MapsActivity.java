@@ -9,6 +9,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -34,7 +35,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         .findFragmentById(R.id.map);
 
     // todo pidiendo permisos
-    ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+    //ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 
     // retrieving the door list in order to show the doors' location on the map
     Bundle bundle = getIntent().getExtras();
@@ -82,17 +83,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     for (Door door: doorList) {
       LatLng coordinates = new LatLng(door.getLatitude(), door.getLongitude());
-      mMap.addMarker(new MarkerOptions().position(coordinates).title(door.getName()));
+      if (door.isOpen()) {
+        mMap.addMarker(new MarkerOptions().position(coordinates).title(door.getName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))); // green marker if open
+      } else {
+        mMap.addMarker(new MarkerOptions().position(coordinates).title(door.getName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))); // red marker if closed
+      }
+
     }
 
-    mMap.setMyLocationEnabled(true);
+    mMap.setMyLocationEnabled(true); // enabling my location
 
+    // todo: actualizar todo el rato??
     mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
 
       @Override
       public void onMyLocationChange(Location location) {
         LatLng myLocation = new LatLng(location.getLatitude(), location.getLongitude());
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 19));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 17));
       }
     });
 

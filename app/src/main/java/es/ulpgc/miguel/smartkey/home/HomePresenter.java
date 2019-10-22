@@ -39,10 +39,10 @@ public class HomePresenter implements HomeContract.Presenter {
     model.signOut(new FirebaseContract.LogoutCallback() {
       @Override
       public void onLoggedOut() {
-        startLoginScreen();
         viewModel.setMessage("Logout successful");
         viewModel.setDoorList(new ArrayList<Door>()); // todo: codigo sucio?
         view.get().displayData(viewModel);
+        startLoginScreen();
       }
     });
   }

@@ -1,5 +1,6 @@
 package es.ulpgc.miguel.smartkey.home;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.ToggleButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import es.ulpgc.miguel.smartkey.R;
@@ -27,7 +29,7 @@ public class HomeActivity
   private FirebaseAuth firebaseAuth;
 
   // declaring the buttons
-  private Button logoutButton, profileButton;
+  private Button logoutButton, mapButton;
 
   private ImageView logo; // todo: prueba para acceder al mapa
 
@@ -47,8 +49,11 @@ public class HomeActivity
 
     // initializing the components of the view
     logoutButton = findViewById(R.id.logoutButton);
-    profileButton = findViewById(R.id.profileButton);
+    mapButton = findViewById(R.id.mapButton);
     logo = findViewById(R.id.logo); // todo prueba para acceder al mapa
+
+    // todo: pidiendo permiso (no sé si funciona)
+    ActivityCompat.requestPermissions( this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 
     // home adapter
     homeAdapter = new HomeAdapter(new RecyclerViewOnClick() {
@@ -71,16 +76,8 @@ public class HomeActivity
       }
     });
 
-    // listener when profile button is clicked
-    profileButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        // TODO: pasar a la pantalla profile
-      }
-    });
-
     // todo prueba para acceder al mapa
-    logo.setOnClickListener(new View.OnClickListener() {
+    mapButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         presenter.startMapsScreen(); // todo prueba para acceder al mapa
