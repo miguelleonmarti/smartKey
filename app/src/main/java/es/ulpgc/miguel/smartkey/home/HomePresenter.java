@@ -1,5 +1,7 @@
 package es.ulpgc.miguel.smartkey.home;
 
+import android.location.Location;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
@@ -48,8 +50,8 @@ public class HomePresenter implements HomeContract.Presenter {
   }
 
   @Override
-  public void fetchDoors() {
-    model.fetchDoors(new FirebaseContract.FetchDoors() {
+  public void fetchDoors(Location location) {
+    model.fetchDoors(location, new FirebaseContract.FetchDoors() {
       @Override
       public void onDoorsFetch(ArrayList<Door> doorArrayList) {
         viewModel.setMessage("");

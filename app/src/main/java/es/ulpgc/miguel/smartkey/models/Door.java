@@ -5,16 +5,17 @@ import java.util.ArrayList;
 
 public class Door implements Serializable {
   private int id;
-  private String name;
+  private String name, address;
   private float latitude, longitude;
   private boolean open;
   private ArrayList<String> users;
 
   public Door() {}
 
-  public Door(int id, String name, float latitude, float longitude, boolean open, ArrayList<String> users) {
+  public Door(int id, String name, String address, float latitude, float longitude, boolean open, ArrayList<String> users) {
     this.id = id;
     this.name = name;
+    this.address = address;
     this.latitude = latitude;
     this.longitude = longitude;
     this.open = open;
@@ -35,6 +36,14 @@ public class Door implements Serializable {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
   }
 
   public float getLatitude() {

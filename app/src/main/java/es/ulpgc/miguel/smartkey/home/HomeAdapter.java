@@ -64,8 +64,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     holder.openButtonView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        int doorId = doorList.get(position).getId();
-        listener.onClick(doorId);
+        String address = doorList.get(position).getAddress();
+        listener.onClick(address);
       }
     });
   }

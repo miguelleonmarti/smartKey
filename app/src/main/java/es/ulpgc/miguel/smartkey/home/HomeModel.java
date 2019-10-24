@@ -1,5 +1,7 @@
 package es.ulpgc.miguel.smartkey.home;
 
+import android.location.Location;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,7 +34,7 @@ public class HomeModel implements HomeContract.Model {
   }
 
   @Override
-  public void fetchDoors(final FirebaseContract.FetchDoors callback) {
+  public void fetchDoors(final Location location, final FirebaseContract.FetchDoors callback) {
     databaseReference.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -42,8 +44,14 @@ public class HomeModel implements HomeContract.Model {
           Door item = door.getValue(Door.class);
           // allowed users filter
           // if the current user's uid is on the list of users with permission
-          // of the door, it will add this door to the local list (home activity)
-          if (item.getUsers().contains(firebaseAuth.getCurrentUser().getUid())) {
+          // of the door, it will add this door to the local list (home activity) todo comentar un poco mas
+          Location doorLocation = new Location("");
+          doorLocation.setLatitude(item.getLatitude());
+          doorLocation.setLongitude(item.getLongitude());
+
+          float distanceInMeters = location.distanceTo(doorLocation);
+
+          if (item.getUsers().contains(firebaseAuth.getCurrentUser().getUid()) && distanceInMeters < 15000) {
             doorList.add(item);
           }
         }

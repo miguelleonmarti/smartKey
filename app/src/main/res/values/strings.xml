@@ -20,4 +20,5 @@
     <string name="cancelLabel">Cancel</string>
     <string name="send_label">Send</string>
     <string name="map_label">Map</string>
+    <string name="UUID">00001101-0000-1000-8000-00805F9B34FB</string>
 </resources>

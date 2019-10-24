@@ -1,5 +1,7 @@
 package es.ulpgc.miguel.smartkey.home;
 
+import android.location.Location;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ interface HomeContract {
 
     void startLoginScreen();
 
-    void fetchDoors();
+    void fetchDoors(Location location);
 
     void openDoor(int doorId);
 
@@ -36,7 +38,7 @@ interface HomeContract {
   interface Model {
     void signOut(FirebaseContract.LogoutCallback callback);
 
-    void fetchDoors(FirebaseContract.FetchDoors callback);
+    void fetchDoors(Location location, FirebaseContract.FetchDoors callback);
 
     void openDoor(int idDoor, FirebaseContract.OpenDoor callback);
   }
