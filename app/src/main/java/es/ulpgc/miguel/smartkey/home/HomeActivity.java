@@ -38,6 +38,9 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
   private HomeContract.Presenter presenter;
 
+  // firebase auth
+  private FirebaseAuth firebaseAuth; // todo iria aqui o en el presentador????
+
   // declaring the buttons
   private Button logoutButton, mapButton;
 
@@ -70,6 +73,9 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_home);
+
+    // firebase auth
+    firebaseAuth = FirebaseAuth.getInstance(); // todo iria aqui o en el presentador????
 
     // location service
     locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
@@ -116,7 +122,8 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         new ConnectThread(bluetoothAdapter.getRemoteDevice(address), bluetoothAdapter, MY_UUID, new BluetoothContract.ConnectThread() {
           @Override
           public void onSocketConnected(BluetoothSocket socket) {
-            String message = "todo correcto"; // todo aqui iria el id del usuario
+            String message = firebaseAuth.getUid(); // todo aqui iria el id del usuario
+            message = message + "//" + message.getBytes().length;
             ConnectedThread connectedThread = new ConnectedThread(socket, handler);
             connectedThread.write(message.getBytes());
             connectedThread.cancel();
