@@ -5,7 +5,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.NonNull;
-import es.ulpgc.miguel.smartkey.services.FirebaseContract;
+import es.ulpgc.miguel.smartkey.services.firebase.FirebaseContract;
 
 public class ForgottenModel implements ForgottenContract.Model {
 

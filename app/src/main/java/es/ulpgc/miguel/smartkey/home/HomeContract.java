@@ -4,10 +4,9 @@ import android.location.Location;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.List;
 
 import es.ulpgc.miguel.smartkey.models.Door;
-import es.ulpgc.miguel.smartkey.services.FirebaseContract;
+import es.ulpgc.miguel.smartkey.services.firebase.FirebaseContract;
 
 interface HomeContract {
 

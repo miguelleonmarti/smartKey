@@ -1,4 +1,4 @@
-package es.ulpgc.miguel.smartkey.home;
+package es.ulpgc.miguel.smartkey.services.bluetooth;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;

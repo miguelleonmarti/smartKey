@@ -1,8 +1,5 @@
 package es.ulpgc.miguel.smartkey.register;
 
-import android.util.Log;
-import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -14,7 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.annotation.NonNull;
 import es.ulpgc.miguel.smartkey.models.User;
-import es.ulpgc.miguel.smartkey.services.FirebaseContract;
+import es.ulpgc.miguel.smartkey.services.firebase.FirebaseContract;
 
 
 public class RegisterModel implements RegisterContract.Model {

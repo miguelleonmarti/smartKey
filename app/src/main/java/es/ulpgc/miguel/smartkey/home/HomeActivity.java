@@ -3,7 +3,6 @@ package es.ulpgc.miguel.smartkey.home;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.location.Location;
@@ -12,14 +11,9 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -31,6 +25,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import es.ulpgc.miguel.smartkey.R;
+import es.ulpgc.miguel.smartkey.services.bluetooth.BluetoothContract;
+import es.ulpgc.miguel.smartkey.services.bluetooth.ConnectThread;
+import es.ulpgc.miguel.smartkey.services.bluetooth.ConnectedThread;
 
 public class HomeActivity extends AppCompatActivity implements HomeContract.View {
 
@@ -165,12 +162,17 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
   }
 
   @Override
-  public void displayData(HomeViewModel viewModel) {
-    // toast with logout message
-    if (!viewModel.getMessage().equals("")) {
-      Toast.makeText(getApplicationContext(), viewModel.getMessage(), Toast.LENGTH_LONG).show();
-    }
-    // adapter sets the list items
-    homeAdapter.setItems(viewModel.getDoorList());
+  public void displayData(final HomeViewModel viewModel) {
+    runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        // toast with logout message
+        if (!viewModel.getMessage().equals("")) {
+          Toast.makeText(getApplicationContext(), viewModel.getMessage(), Toast.LENGTH_LONG).show();
+        }
+        // adapter sets the list items
+        homeAdapter.setItems(viewModel.getDoorList());
+      }
+    });
   }
 }

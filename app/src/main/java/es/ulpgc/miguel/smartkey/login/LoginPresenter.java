@@ -2,7 +2,7 @@ package es.ulpgc.miguel.smartkey.login;
 
 import java.lang.ref.WeakReference;
 
-import es.ulpgc.miguel.smartkey.services.FirebaseContract;
+import es.ulpgc.miguel.smartkey.services.firebase.FirebaseContract;
 
 public class LoginPresenter implements LoginContract.Presenter {
 

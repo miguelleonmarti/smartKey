@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import es.ulpgc.miguel.smartkey.models.Door;
-import es.ulpgc.miguel.smartkey.services.FirebaseContract;
+import es.ulpgc.miguel.smartkey.services.firebase.FirebaseContract;
 
 public class HomeModel implements HomeContract.Model {
 

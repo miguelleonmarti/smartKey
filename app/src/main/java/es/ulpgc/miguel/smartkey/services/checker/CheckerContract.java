@@ -1,4 +1,4 @@
-package es.ulpgc.miguel.smartkey.services;
+package es.ulpgc.miguel.smartkey.services.checker;
 
 import android.widget.EditText;
 

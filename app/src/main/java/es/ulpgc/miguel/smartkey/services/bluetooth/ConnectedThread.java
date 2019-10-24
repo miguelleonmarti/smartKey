@@ -1,4 +1,4 @@
-package es.ulpgc.miguel.smartkey.home;
+package es.ulpgc.miguel.smartkey.services.bluetooth;
 
 import android.bluetooth.BluetoothSocket;
 import android.os.Bundle;
@@ -9,8 +9,6 @@ import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
-import androidx.annotation.NonNull;
 
 public class ConnectedThread extends Thread {
   private static final String TAG = ConnectedThread.class.getSimpleName();

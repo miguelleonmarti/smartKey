@@ -2,7 +2,7 @@ package es.ulpgc.miguel.smartkey.forgotten;
 
 import java.lang.ref.WeakReference;
 
-import es.ulpgc.miguel.smartkey.services.FirebaseContract;
+import es.ulpgc.miguel.smartkey.services.firebase.FirebaseContract;
 
 interface ForgottenContract {
 

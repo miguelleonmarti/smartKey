@@ -6,7 +6,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import es.ulpgc.miguel.smartkey.models.Door;
-import es.ulpgc.miguel.smartkey.services.FirebaseContract;
+import es.ulpgc.miguel.smartkey.services.firebase.FirebaseContract;
 
 public class HomePresenter implements HomeContract.Presenter {
 
