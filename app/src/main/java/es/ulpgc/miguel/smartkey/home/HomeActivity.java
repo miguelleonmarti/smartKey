@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -64,6 +65,14 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
   // declaring location manager
   private LocationManager locationManager;
   private LocationListener locationListener;
+  private static final String[] INITIAL_PERMS={
+      Manifest.permission.ACCESS_FINE_LOCATION
+  };
+  private static final String[] LOCATION_PERMS={
+      Manifest.permission.ACCESS_FINE_LOCATION
+  };
+  private static final int INITIAL_REQUEST=1337;
+  private static final int LOCATION_REQUEST=INITIAL_REQUEST+1;
 
   @SuppressLint("MissingPermission") // todo comprobar permisos
   @Override
@@ -75,6 +84,9 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     firebaseAuth = FirebaseAuth.getInstance(); // todo iria aqui o en el presentador????
 
     // location service
+    if (!canAccessLocation()) {
+      requestPermissions(INITIAL_PERMS, INITIAL_REQUEST);
+    }
     locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
     locationListener = new LocationListener() {
       @Override
@@ -97,7 +109,9 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
       }
     };
+
     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 2, locationListener);
+
 
     // hiding the action bar
     getSupportActionBar().hide();
@@ -109,9 +123,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     logoutButton = findViewById(R.id.logoutButton);
     mapButton = findViewById(R.id.mapButton);
 
-    // todo: pidiendo permiso (no sé si funciona)
-    ActivityCompat.requestPermissions( this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-
     // home adapter
     homeAdapter = new HomeAdapter(new RecyclerViewOnClick() {
       @Override
@@ -120,7 +131,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
           @Override
           public void onSocketConnected(BluetoothSocket socket) {
             String message = firebaseAuth.getUid(); // todo aqui iria el id del usuario
-            message = message + "//" + message.getBytes().length;
             ConnectedThread connectedThread = new ConnectedThread(socket, handler);
             connectedThread.write(message.getBytes());
             connectedThread.cancel();
@@ -174,5 +184,14 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         homeAdapter.setItems(viewModel.getDoorList());
       }
     });
+  }
+
+  // LOCATION
+  private boolean canAccessLocation() {
+    return(hasPermission(Manifest.permission.ACCESS_FINE_LOCATION));
+  }
+
+  private boolean hasPermission(String perm) {
+    return(PackageManager.PERMISSION_GRANTED==checkSelfPermission(perm));
   }
 }

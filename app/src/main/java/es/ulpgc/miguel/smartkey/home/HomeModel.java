@@ -51,7 +51,7 @@ public class HomeModel implements HomeContract.Model {
 
           float distanceInMeters = location.distanceTo(doorLocation);
 
-          if (item.getUsers().contains(firebaseAuth.getCurrentUser().getUid()) && distanceInMeters < 15000) {
+          if (item.getUsers().contains(firebaseAuth.getCurrentUser().getUid()) && distanceInMeters < 100000) {
             doorList.add(item);
           }
         }
