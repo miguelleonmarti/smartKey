@@ -133,7 +133,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
             String message = firebaseAuth.getUid(); // todo aqui iria el id del usuario
             ConnectedThread connectedThread = new ConnectedThread(socket, handler);
             connectedThread.write(message.getBytes());
-            connectedThread.cancel();
+            //connectedThread.cancel();
 
           }
         }).start();

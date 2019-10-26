@@ -52,6 +52,7 @@ public class ConnectedThread extends Thread {
       Message writtenMsg = handler.obtainMessage(
           MESSAGE_WRITE, -1, -1, mmBuffer);
       writtenMsg.sendToTarget();
+      //this.cancel(); // todo lo puse yo
     } catch (IOException e) {
       Log.e(TAG, "Error occurred when sending data", e);
       // Send a failure message back to the activity.
