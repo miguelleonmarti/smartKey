@@ -37,9 +37,14 @@
 
         <activity
             android:name=".map.MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:configChanges="orientation"
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".login.LoginActivity">
+        <activity
+            android:name=".login.LoginActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -48,10 +53,22 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".register.RegisterActivity" />
-        <activity android:name=".forgotten.ForgottenActivity" />
-        <activity android:name=".home.HomeActivity" />
-        <activity android:name=".profile.ProfileActivity" />
+        <activity
+            android:name=".register.RegisterActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".forgotten.ForgottenActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.HomeActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".profile.ProfileActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
