@@ -56,9 +56,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     if (doorList.get(position).isOpen()) {
       holder.openButtonView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.ic_unlock);
       holder.openButtonView.setBackgroundResource(R.drawable.btn_open_rounded);
+      holder.openButtonView.setText("Close");
     } else {
       holder.openButtonView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.ic_lock);
       holder.openButtonView.setBackgroundResource(R.drawable.btn_closed_rounded);
+      holder.openButtonView.setText("Open");
     }
 
     holder.openButtonView.setOnClickListener(new View.OnClickListener() {
