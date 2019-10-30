@@ -12,6 +12,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -133,6 +134,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
             String message = firebaseAuth.getUid(); // todo aqui iria el id del usuario
             ConnectedThread connectedThread = new ConnectedThread(socket, handler);
             connectedThread.write(message.getBytes());
+            SystemClock.sleep(1500);
             //connectedThread.cancel();
 
           }
