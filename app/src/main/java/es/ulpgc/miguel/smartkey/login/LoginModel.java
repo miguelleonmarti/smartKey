@@ -18,6 +18,12 @@ public class LoginModel implements LoginContract.Model {
     this.firebaseAuth = FirebaseAuth.getInstance();
   }
 
+  /**
+   * Sign in a user on the app by email and password
+   * @param email user's email
+   * @param password user's password
+   * @param callback notifies the presenter on complete
+   */
   @Override
   public void signIn(String email, String password, final FirebaseContract.LoginCallback callback) {
     firebaseAuth.signInWithEmailAndPassword(email, password).

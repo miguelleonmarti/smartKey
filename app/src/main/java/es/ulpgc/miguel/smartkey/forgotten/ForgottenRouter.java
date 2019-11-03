@@ -16,13 +16,9 @@ public class ForgottenRouter implements ForgottenContract.Router {
     this.mediator = mediator;
   }
 
-  @Override
-  public void navigateToNextScreen() {
-    Context context = mediator.getApplicationContext();
-    Intent intent = new Intent(context, ForgottenActivity.class);
-    context.startActivity(intent);
-  }
-
+  /**
+   * Navigate to login screen.
+   */
   @Override
   public void navigateToLoginScreen() {
     Context context = mediator.getApplicationContext();
@@ -30,14 +26,4 @@ public class ForgottenRouter implements ForgottenContract.Router {
     context.startActivity(intent);
   }
 
-  @Override
-  public void passDataToNextScreen(ForgottenState state) {
-    mediator.setForgottenState(state);
-  }
-
-  @Override
-  public ForgottenState getDataFromPreviousScreen() {
-    ForgottenState state = mediator.getForgottenState();
-    return state;
-  }
 }

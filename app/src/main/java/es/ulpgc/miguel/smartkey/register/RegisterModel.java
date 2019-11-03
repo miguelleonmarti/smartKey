@@ -26,6 +26,13 @@ public class RegisterModel implements RegisterContract.Model {
     databaseReference = FirebaseDatabase.getInstance().getReference();
   }
 
+  /**
+   * Sign up a user on the app by email and password
+   * @param name new user's name
+   * @param email new user's email
+   * @param password new user's password
+   * @param callback notifies the presenter on complete
+   */
   @Override
   public void createAccount(final String name, final String email, String password, final FirebaseContract.RegisterCallback callback) {
     firebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -36,7 +43,7 @@ public class RegisterModel implements RegisterContract.Model {
               final FirebaseUser user = firebaseAuth.getCurrentUser();
 
               UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                  .setDisplayName(name).build();
+                  .setDisplayName(name).build(); // it sets the user's display name by its name
 
               if (user != null) {
                 user.updateProfile(profileUpdates)
@@ -60,11 +67,21 @@ public class RegisterModel implements RegisterContract.Model {
         });
   }
 
+  /**
+   * Saving user in the Firebase Database
+   * @param userId user's id
+   * @param name user's name
+   * @param email user's email
+   */
   private void writeNewUser(String userId, String name, String email) {
     User user = new User(name, email);
     databaseReference.child("users").child(userId).setValue(user);
   }
 
+  /**
+   * Sign out the current user
+   * @param callback notifies the presenter on complete
+   */
   @Override
   public void signOut(FirebaseContract.LogoutCallback callback) {
     firebaseAuth.signOut();

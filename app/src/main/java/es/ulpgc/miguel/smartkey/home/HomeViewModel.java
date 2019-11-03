@@ -7,9 +7,12 @@ import es.ulpgc.miguel.smartkey.models.Door;
 
 public class HomeViewModel {
 
-  private String message;
-  private ArrayList<Door> doorList = new ArrayList<>();
+  private String message; // represents the logout message
+  private ArrayList<Door> doorList = new ArrayList<>(); // list of fetched doors
 
+  /*
+  getters and setter of message and doors list
+   */
   public String getMessage() {
     return message;
   }

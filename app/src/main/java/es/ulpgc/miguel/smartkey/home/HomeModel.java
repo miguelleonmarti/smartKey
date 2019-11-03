@@ -1,6 +1,7 @@
 package es.ulpgc.miguel.smartkey.home;
 
 import android.location.Location;
+import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -19,20 +20,31 @@ public class HomeModel implements HomeContract.Model {
 
   public static String TAG = HomeModel.class.getSimpleName();
 
-  private FirebaseAuth firebaseAuth;
-  private DatabaseReference databaseReference;
+  private FirebaseAuth firebaseAuth; // in order to sign out the user
+  private DatabaseReference databaseReference; // database's reference
 
   public HomeModel() {
     this.firebaseAuth = FirebaseAuth.getInstance();
     this.databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://smartkey-2fae0.firebaseio.com/"); // todo: revisar si debe ser así
   }
 
+  /**
+   * Close the user's current session
+   * @param callback When process has finished
+   */
   @Override
   public void signOut(FirebaseContract.LogoutCallback callback) {
     firebaseAuth.signOut();
     callback.onLoggedOut();
   }
 
+  /**
+   * Look for the doors in which the user has permission to access and that are also within a
+   * certain radius
+   *
+   * @param location The user's current location
+   * @param callback When process has finished
+   */
   @Override
   public void fetchDoors(final Location location, final FirebaseContract.FetchDoors callback) {
     databaseReference.addValueEventListener(new ValueEventListener() {
@@ -40,17 +52,17 @@ public class HomeModel implements HomeContract.Model {
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
         Iterable<DataSnapshot> doors = dataSnapshot.child("doors").getChildren();
         ArrayList<Door> doorList = new ArrayList<>();
-        for (DataSnapshot door: doors) {
+        for (DataSnapshot door : doors) {
           Door item = door.getValue(Door.class);
-          // allowed users filter
           // if the current user's uid is on the list of users with permission
-          // of the door, it will add this door to the local list (home activity) todo comentar un poco mas
+          // of the door, it will add this door to the local list (home activity)
           Location doorLocation = new Location("");
           doorLocation.setLatitude(item.getLatitude());
           doorLocation.setLongitude(item.getLongitude());
 
           float distanceInMeters = location.distanceTo(doorLocation);
 
+          // in addition, only if the user is within a certain distance will the door be added to the list
           if (item.getUsers().contains(firebaseAuth.getCurrentUser().getUid()) && distanceInMeters < 100000) {
             doorList.add(item);
           }
@@ -61,14 +73,9 @@ public class HomeModel implements HomeContract.Model {
 
       @Override
       public void onCancelled(@NonNull DatabaseError databaseError) {
-
+        Log.d(TAG, String.valueOf(databaseError));
       }
     });
   }
 
-  @Override
-  public void openDoor(int idDoor, FirebaseContract.OpenDoor callback) {
-    databaseReference.child("doors").child(String.valueOf(idDoor)).child("open").setValue(true);
-    callback.onDoorOpen(false);
-  }
 }

@@ -75,12 +75,6 @@ public class LoginActivity
   }
 
   @Override
-  protected void onResume() {
-    super.onResume();
-
-  }
-
-  @Override
   public void injectPresenter(LoginContract.Presenter presenter) {
     this.presenter = presenter;
   }

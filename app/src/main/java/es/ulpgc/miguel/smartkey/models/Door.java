@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 public class Door implements Serializable {
   private int id;
-  private String name, address;
+  private String name, address; // address is the bluetooth MAC address
   private float latitude, longitude;
   private boolean open;
   private ArrayList<String> users;
 
-  public Door() {}
+  public Door() {} // default constructor required by firebase database
 
   public Door(int id, String name, String address, float latitude, float longitude, boolean open, ArrayList<String> users) {
     this.id = id;
@@ -21,6 +21,10 @@ public class Door implements Serializable {
     this.open = open;
     this.users = users;
   }
+
+  /*
+  getters and setters
+   */
 
   public int getId() {
     return id;

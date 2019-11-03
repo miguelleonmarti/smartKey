@@ -28,18 +28,9 @@ interface LoginContract {
     void startForgottenScreen();
   }
 
-  interface Model {
-
-    void signIn(String email, String password, FirebaseContract.LoginCallback callback);
-
-  }
+  interface Model { void signIn(String email, String password, FirebaseContract.LoginCallback callback); }
 
   interface Router {
-    void navigateToNextScreen();
-
-    void passDataToNextScreen(LoginState state);
-
-    LoginState getDataFromPreviousScreen();
 
     void navigateToRegisterScreen();
 

@@ -24,19 +24,7 @@ interface ForgottenContract {
     void startLoginScreen();
   }
 
-  interface Model {
+  interface Model { void sendRecoveryEmail(String email, FirebaseContract.SendRecoveryEmail callback); }
 
-    void sendRecoveryEmail(String email, FirebaseContract.SendRecoveryEmail callback);
-
-  }
-
-  interface Router {
-    void navigateToNextScreen();
-
-    void passDataToNextScreen(ForgottenState state);
-
-    ForgottenState getDataFromPreviousScreen();
-
-    void navigateToLoginScreen();
-  }
+  interface Router { void navigateToLoginScreen(); }
 }

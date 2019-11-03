@@ -39,7 +39,8 @@
             android:name=".map.MapsActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_maps"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" /> <!-- Map that add doors' locations as markers on
+                                                         the map -->
 
         <activity
             android:name=".login.LoginActivity"
@@ -51,24 +52,23 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity> <!-- Activity that allows a user to sign in on the app -->
 
         <activity
             android:name=".register.RegisterActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" /> <!-- Activity that allows a user to sign up
+                                                         on the app -->
         <activity
             android:name=".forgotten.ForgottenActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" /> <!-- Activity launched when a user has forgotten
+                                                         its email and has to reset the password -->
         <activity
             android:name=".home.HomeActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".profile.ProfileActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" /> <!-- Main activity of the app which shows the
+                                                         user's door in a range according to GPS -->
     </application>
 
 </manifest>

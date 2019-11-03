@@ -22,10 +22,6 @@ public interface FirebaseContract {
     void onDoorsFetch(ArrayList<Door> doorArrayList);
   }
 
-  interface OpenDoor {
-    void onDoorOpen(boolean error);
-  }
-
   interface SendRecoveryEmail {
     void onEmailSent(boolean error);
   }

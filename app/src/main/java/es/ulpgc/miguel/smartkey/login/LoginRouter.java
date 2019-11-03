@@ -18,24 +18,9 @@ public class LoginRouter implements LoginContract.Router {
     this.mediator = mediator;
   }
 
-  @Override
-  public void navigateToNextScreen() {
-    Context context = mediator.getApplicationContext();
-    Intent intent = new Intent(context, LoginActivity.class);
-    context.startActivity(intent);
-  }
-
-  @Override
-  public void passDataToNextScreen(LoginState state) {
-    mediator.setLoginState(state);
-  }
-
-  @Override
-  public LoginState getDataFromPreviousScreen() {
-    LoginState state = mediator.getLoginState();
-    return state;
-  }
-
+  /**
+   * Navigates to register screen
+   */
   @Override
   public void navigateToRegisterScreen() {
     Context context = mediator.getApplicationContext();
@@ -44,6 +29,9 @@ public class LoginRouter implements LoginContract.Router {
     context.startActivity(intent);
   }
 
+  /**
+   * Navigates to send recovery email screen
+   */
   @Override
   public void navigateToForgottenScreen() {
     Context context = mediator.getApplicationContext();
@@ -52,6 +40,9 @@ public class LoginRouter implements LoginContract.Router {
     context.startActivity(intent);
   }
 
+  /**
+   * Navigates to home screen
+   */
   @Override
   public void navigateToHomeScreen() {
     Context context = mediator.getApplicationContext();

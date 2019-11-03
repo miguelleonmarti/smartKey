@@ -6,7 +6,6 @@ import com.google.firebase.FirebaseApp;
 
 import es.ulpgc.miguel.smartkey.forgotten.ForgottenState;
 import es.ulpgc.miguel.smartkey.home.HomeState;
-import es.ulpgc.miguel.smartkey.profile.ProfileState;
 import es.ulpgc.miguel.smartkey.register.RegisterState;
 import es.ulpgc.miguel.smartkey.login.LoginState;
 
@@ -16,7 +15,6 @@ public class AppMediator extends Application {
   private LoginState loginState;
   private RegisterState registerState;
   private HomeState homeState;
-  private ProfileState profileState;
   private ForgottenState forgottenState;
 
   @Override
@@ -30,9 +28,12 @@ public class AppMediator extends Application {
     this.loginState = new LoginState();
     this.registerState = new RegisterState();
     this.homeState = new HomeState();
-    this.profileState = new ProfileState();
     this.forgottenState = new ForgottenState();
   }
+
+  /*
+      getters and setters for all states
+   */
 
   public LoginState getLoginState() {
     return loginState;
@@ -56,14 +57,6 @@ public class AppMediator extends Application {
 
   public void setHomeState(HomeState homeState) {
     this.homeState = homeState;
-  }
-
-  public ProfileState getProfileState() {
-    return profileState;
-  }
-
-  public void setProfileState(ProfileState profileState) {
-    this.profileState = profileState;
   }
 
   public ForgottenState getForgottenState() {

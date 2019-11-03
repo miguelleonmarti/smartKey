@@ -65,6 +65,7 @@ public class RegisterActivity
       }
     });
 
+    // listener when login button is clicked
     loginButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -74,12 +75,6 @@ public class RegisterActivity
 
     // do the setup
     RegisterScreen.configure(this);
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-
   }
 
   @Override

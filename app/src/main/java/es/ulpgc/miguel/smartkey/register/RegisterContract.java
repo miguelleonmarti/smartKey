@@ -30,13 +30,5 @@ interface RegisterContract {
     void signOut(FirebaseContract.LogoutCallback callback);
   }
 
-  interface Router {
-    void navigateToNextScreen();
-
-    void passDataToNextScreen(RegisterState state);
-
-    RegisterState getDataFromPreviousScreen();
-
-    void navigateToLoginScreen();
-  }
+  interface Router { void navigateToLoginScreen(); }
 }

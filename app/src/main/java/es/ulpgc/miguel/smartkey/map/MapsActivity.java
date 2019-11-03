@@ -84,16 +84,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     for (Door door: doorList) {
       LatLng coordinates = new LatLng(door.getLatitude(), door.getLongitude());
       if (door.isOpen()) {
-        mMap.addMarker(new MarkerOptions().position(coordinates).title(door.getName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))); // green marker if open
+        // green marker if open
+        mMap.addMarker(new MarkerOptions().position(coordinates).title(door.getName())
+            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
       } else {
-        mMap.addMarker(new MarkerOptions().position(coordinates).title(door.getName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))); // red marker if closed
+        // red marker if closed
+        mMap.addMarker(new MarkerOptions().position(coordinates).title(door.getName()).
+            icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
       }
 
     }
 
     mMap.setMyLocationEnabled(true); // enabling my location
 
-    // todo: actualizar todo el rato??
     mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
 
       @Override

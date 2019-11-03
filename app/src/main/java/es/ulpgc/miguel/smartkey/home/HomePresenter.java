@@ -36,19 +36,26 @@ public class HomePresenter implements HomeContract.Presenter {
     this.router = router;
   }
 
+  /**
+   * Close the current session
+   */
   @Override
   public void signOut() {
     model.signOut(new FirebaseContract.LogoutCallback() {
       @Override
       public void onLoggedOut() {
         viewModel.setMessage("Logout successful");
-        viewModel.setDoorList(new ArrayList<Door>()); // todo: codigo sucio?
+        viewModel.setDoorList(new ArrayList<Door>());
         view.get().displayData(viewModel);
         startLoginScreen();
       }
     });
   }
 
+  /**
+   * Calls the model in order to fetch the doors and updates the view when process has finished
+   * @param location The user's current location
+   */
   @Override
   public void fetchDoors(Location location) {
     model.fetchDoors(location, new FirebaseContract.FetchDoors() {
@@ -57,20 +64,6 @@ public class HomePresenter implements HomeContract.Presenter {
         viewModel.setMessage("");
         viewModel.setDoorList(doorArrayList);
         view.get().displayData(viewModel);
-      }
-    });
-  }
-
-  @Override
-  public void openDoor(int doorId) {
-    model.openDoor(doorId, new FirebaseContract.OpenDoor() {
-      @Override
-      public void onDoorOpen(boolean error) {
-        if (!error) {
-          // no hay error todo que hago aqui?
-        } else {
-          // hay error
-        }
       }
     });
   }

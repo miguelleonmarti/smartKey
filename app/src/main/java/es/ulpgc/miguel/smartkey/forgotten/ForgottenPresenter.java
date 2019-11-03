@@ -32,6 +32,11 @@ public class ForgottenPresenter implements ForgottenContract.Presenter {
     this.router = router;
   }
 
+  /**
+   * Calls the model in order to send the recovery email. Depending on the operation's result, it
+   * will show a positive message, if email was sent successfully, or a negative message if not.
+   * @param email the user's email
+   */
   @Override
   public void sendRecoveryEmail(String email) {
     model.sendRecoveryEmail(email, new FirebaseContract.SendRecoveryEmail() {
@@ -44,11 +49,14 @@ public class ForgottenPresenter implements ForgottenContract.Presenter {
           // something wrong has happened
           viewModel.setMessage("Fail to send email");
         }
-        view.get().displayData(viewModel);
+        view.get().displayData(viewModel); // the view will show the message
       }
     });
   }
 
+  /**
+   * Start login screen.
+   */
   @Override
   public void startLoginScreen() {
     router.navigateToLoginScreen();

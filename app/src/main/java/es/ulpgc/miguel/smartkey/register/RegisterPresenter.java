@@ -32,14 +32,19 @@ public class RegisterPresenter implements RegisterContract.Presenter {
     this.router = router;
   }
 
-
+  /**
+   * Calls the model in order to create a new account.
+   * @param name new user's name
+   * @param email new user's email
+   * @param password new user's password
+   */
   @Override
   public void createAccount(String name, String email, String password) {
     model.createAccount(name, email, password, new FirebaseContract.RegisterCallback() {
       @Override
       public void onRegistered(boolean error) {
         if (!error) {
-          viewModel.message = "User created";
+          viewModel.setMessage("User created");
           view.get().displayData(viewModel);
           model.signOut(new FirebaseContract.LogoutCallback() {
             @Override
@@ -49,13 +54,16 @@ public class RegisterPresenter implements RegisterContract.Presenter {
           });
         } else {
           // cannot be registered
-          viewModel.message = "Register failed";
+          viewModel.setMessage("Register failed");
           view.get().displayData(viewModel);
         }
       }
     });
   }
 
+  /**
+   * Starts login screen
+   */
   @Override
   public void startLoginScreen() {
     router.navigateToLoginScreen();

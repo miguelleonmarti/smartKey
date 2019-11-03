@@ -58,7 +58,7 @@ public class ForgottenActivity
   public void onBackPressed() {
     super.onBackPressed();
 
-    presenter.startLoginScreen();
+    presenter.startLoginScreen(); // when the back button is pressed it returns to login screen
   }
 
   @Override

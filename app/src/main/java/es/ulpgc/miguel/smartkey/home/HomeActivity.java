@@ -113,7 +113,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 2, locationListener);
 
-
     // hiding the action bar
     getSupportActionBar().hide();
 
@@ -131,7 +130,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         new ConnectThread(bluetoothAdapter.getRemoteDevice(address), bluetoothAdapter, MY_UUID, new BluetoothContract.ConnectThread() {
           @Override
           public void onSocketConnected(BluetoothSocket socket) {
-            String message = firebaseAuth.getUid(); // todo aqui iria el id del usuario
+            String message = firebaseAuth.getUid();
             ConnectedThread connectedThread = new ConnectedThread(socket, handler);
             connectedThread.write(message.getBytes());
             SystemClock.sleep(1500);
@@ -139,8 +138,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
           }
         }).start();
-
-        //presenter.openDoor(address); todo quite este metodo porque va en la app de la puerta
       }
     });
 
@@ -188,7 +185,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     });
   }
 
-  // LOCATION
+  // Location permission methods
   private boolean canAccessLocation() {
     return(hasPermission(Manifest.permission.ACCESS_FINE_LOCATION));
   }

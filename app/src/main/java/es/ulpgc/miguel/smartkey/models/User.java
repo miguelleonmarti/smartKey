@@ -3,13 +3,16 @@ package es.ulpgc.miguel.smartkey.models;
 public class User {
   private String name, email;
 
-  public User() {
-  }
+  public User() {} // default constructor required by firebase database
 
   public User(String name, String email) {
     this.name = name;
     this.email = email;
   }
+
+  /*
+  getters and setters
+   */
 
   public String getName() {
     return name;

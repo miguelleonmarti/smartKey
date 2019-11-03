@@ -32,7 +32,11 @@ public class LoginPresenter implements LoginContract.Presenter {
     this.router = router;
   }
 
-
+  /**
+   * Calls the model in order to sign in the user
+   * @param email user's email
+   * @param password user's password
+   */
   @Override
   public void signIn(String email, String password) {
     model.signIn(email, password, new FirebaseContract.LoginCallback() {
@@ -50,16 +54,25 @@ public class LoginPresenter implements LoginContract.Presenter {
     });
   }
 
+  /**
+   * Starts register screen
+   */
   @Override
   public void startRegisterScreen() {
     router.navigateToRegisterScreen();
   }
 
+  /**
+   * Starts recovery email screen
+   */
   @Override
   public void startForgottenScreen() {
     router.navigateToForgottenScreen();
   }
 
+  /**
+   * Starts home screen
+    */
   @Override
   public void startHomeScreen() {
     router.navigateToHomeScreen();

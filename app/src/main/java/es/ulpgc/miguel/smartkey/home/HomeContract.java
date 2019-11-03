@@ -29,8 +29,6 @@ interface HomeContract {
 
     void fetchDoors(Location location);
 
-    void openDoor(int doorId);
-
     void startMapsScreen();
   }
 
@@ -38,17 +36,9 @@ interface HomeContract {
     void signOut(FirebaseContract.LogoutCallback callback);
 
     void fetchDoors(Location location, FirebaseContract.FetchDoors callback);
-
-    void openDoor(int idDoor, FirebaseContract.OpenDoor callback);
   }
 
   interface Router {
-    void navigateToNextScreen();
-
-    void passDataToNextScreen(HomeState state);
-
-    HomeState getDataFromPreviousScreen();
-
     void navigateToLoginScreen();
 
     void navigateToMapsScreen(ArrayList<Door> doorList);

@@ -17,6 +17,12 @@ public class ForgottenModel implements ForgottenContract.Model {
     this.firebaseAuth = FirebaseAuth.getInstance();
   }
 
+  /**
+   * Calls Firebase's sendRecoveryEmail function. On Complete, it will notify the presenter with a
+   * callback.
+   * @param email the user's email
+   * @param callback notifies the presenter if there has been an error on complete
+   */
   @Override
   public void sendRecoveryEmail(String email, final FirebaseContract.SendRecoveryEmail callback) {
     firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -26,6 +32,7 @@ public class ForgottenModel implements ForgottenContract.Model {
           // successful operation
           callback.onEmailSent(false);
         } else {
+          // something wrong happened
           callback.onEmailSent(true);
         }
       }
