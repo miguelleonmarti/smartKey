@@ -84,6 +84,6 @@ public class RegisterActivity
 
   @Override
   public void displayData(RegisterViewModel viewModel) {
-    Toast.makeText(RegisterActivity.this, viewModel.message, Toast.LENGTH_SHORT).show();
+    Toast.makeText(RegisterActivity.this, viewModel.getMessage(), Toast.LENGTH_SHORT).show();
   }
 }

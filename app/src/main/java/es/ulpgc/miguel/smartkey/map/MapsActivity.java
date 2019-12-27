@@ -82,7 +82,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     // Add a marker in each door
 
     for (Door door: doorList) {
-      LatLng coordinates = new LatLng(door.getLatitude(), door.getLongitude());
+      LatLng coordinates = new LatLng(Float.parseFloat(door.getLatitude()), Float.parseFloat(door.getLongitude()));
       if (door.isOpen()) {
         // green marker if open
         mMap.addMarker(new MarkerOptions().position(coordinates).title(door.getName())

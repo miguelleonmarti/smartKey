@@ -6,13 +6,13 @@ import java.util.ArrayList;
 public class Door implements Serializable {
   private int id;
   private String name, address; // address is the bluetooth MAC address
-  private float latitude, longitude;
+  private String latitude, longitude;
   private boolean open;
   private ArrayList<String> users;
 
   public Door() {} // default constructor required by firebase database
 
-  public Door(int id, String name, String address, float latitude, float longitude, boolean open, ArrayList<String> users) {
+  public Door(int id, String name, String address, String latitude, String longitude, boolean open, ArrayList<String> users) {
     this.id = id;
     this.name = name;
     this.address = address;
@@ -50,19 +50,19 @@ public class Door implements Serializable {
     this.address = address;
   }
 
-  public float getLatitude() {
+  public String getLatitude() {
     return latitude;
   }
 
-  public void setLatitude(float latitude) {
+  public void setLatitude(String latitude) {
     this.latitude = latitude;
   }
 
-  public float getLongitude() {
+  public String getLongitude() {
     return longitude;
   }
 
-  public void setLongitude(float longitude) {
+  public void setLongitude(String longitude) {
     this.longitude = longitude;
   }
 

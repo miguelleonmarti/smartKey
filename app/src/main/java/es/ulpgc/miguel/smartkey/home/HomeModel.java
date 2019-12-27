@@ -57,8 +57,8 @@ public class HomeModel implements HomeContract.Model {
           // if the current user's uid is on the list of users with permission
           // of the door, it will add this door to the local list (home activity)
           Location doorLocation = new Location("");
-          doorLocation.setLatitude(item.getLatitude());
-          doorLocation.setLongitude(item.getLongitude());
+          doorLocation.setLatitude(Float.parseFloat(item.getLatitude()));
+          doorLocation.setLongitude(Float.parseFloat(item.getLongitude()));
 
           float distanceInMeters = location.distanceTo(doorLocation);
 
