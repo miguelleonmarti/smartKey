@@ -46,7 +46,8 @@ public class LoginActivity
     loginButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        if (checker.validateEmail(emailInput) && checker.validatePassword(passwordInput)) {
+        //if (checker.validateEmail(emailInput) && checker.validatePassword(passwordInput)) {
+        if (checker.validateEmail(emailInput)) {
           String email = emailInput.getText().toString();
           String password = passwordInput.getText().toString();
           presenter.signIn(email, password);
